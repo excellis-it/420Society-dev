@@ -33,7 +33,7 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
               Navigator.push(context, MaterialPageRoute(builder: (_)=>const NotificationScreen()));
             },
             icon: const Icon(
-              Icons.notification_important_outlined,
+              Icons.notifications_active_outlined,
               color: Colors.black54,
             ),
           ),

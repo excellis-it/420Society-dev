@@ -1,15 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:four20society/global_widget/custom_button.dart';
 
-
-
 class CustomProductCardWidget extends StatelessWidget {
   const CustomProductCardWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin:const EdgeInsets.symmetric(vertical: 4),
+      margin: const EdgeInsets.symmetric(vertical: 4),
       padding: const EdgeInsets.all(13),
       decoration: BoxDecoration(
           color: Colors.grey.shade50, borderRadius: BorderRadius.circular(12)),
@@ -20,12 +18,15 @@ class CustomProductCardWidget extends StatelessWidget {
               width: MediaQuery.of(context).size.width * 0.35,
               height: 102,
               decoration: BoxDecoration(
-                  color: Colors.transparent,
-                  borderRadius: BorderRadius.circular(12),
-                  ),
-              child: Image.network("https://excellis.co.in/420-society-world/frontend_assets/images/canabi.png",fit: BoxFit.fill,),
+                color: Colors.transparent,
+                borderRadius: BorderRadius.circular(12),
+              ),
+              child: Image.network(
+                "https://excellis.co.in/420-society-world/frontend_assets/images/canabi.png",
+                fit: BoxFit.fill,
+              ),
             ),
-           const SizedBox(width: 15),
+            const SizedBox(width: 15),
             const Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.start,
@@ -59,36 +60,32 @@ class CustomProductCardWidget extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Expanded(
-              child: CustomElevatedButton(
-                color:const Color(0xFFCCF4F1),
-                textStyle: const TextStyle(fontSize: 14,color: Color(0xFF00C8B8)),
-                height: 50,
-                onTap: () {  }, title: 'Add to Cart',),
+            CustomElevatedButton(
+              color: const Color(0xFFCCF4F1),
+              width: MediaQuery.of(context).size.width * 0.4,
+              textStyle:
+                  const TextStyle(fontSize: 14, color: Color(0xFF00C8B8)),
+              height: 50,
+              onTap: () {},
+              title: 'Add to Cart',
             ),
             const SizedBox(
-              width: 10,
+              width: 20,
             ),
-            Expanded(
-              child: OutlinedButton(
-                style: OutlinedButton.styleFrom(
-                 minimumSize: const Size(0, 53),
-                  foregroundColor: const Color(0XFFFF1C1C),
-                  shape: const StadiumBorder(),
-                  side: const BorderSide(
-                    color: Colors.red,
-                    width: 1,
-                  ),
-                ),
-                child: const Text("Remove"),
-                onPressed: () {},
-              ),
+            CustomElevatedButton(
+              width: MediaQuery.of(context).size.width * 0.4,
+
+              color: const Color(0xFFCCF4F1),
+              textStyle:
+                  const TextStyle(fontSize: 14, color: Color(0xFFFF1C1C)),
+
+              height: 50,
+              onTap: () {},
+              title: 'Remove',
             ),
           ],
         ),
-        //  end of buttons
       ]),
-      //end of cart design
     );
   }
 }
