@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:four20society/constants/colors/app_colors.dart';
@@ -5,15 +7,19 @@ import 'package:four20society/constants/routes/routes_name.dart';
 import 'package:four20society/global_widget/bottom_nav.dart';
 import 'package:four20society/global_widget/custom_button.dart';
 import 'package:four20society/global_widget/input_fields.dart';
+import 'package:http/http.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
   @override
   State<LoginScreen> createState() => _LoginScreenState();
 }
+
 class _LoginScreenState extends State<LoginScreen> {
   TextEditingController loginIdController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,8 +28,7 @@ class _LoginScreenState extends State<LoginScreen> {
         SizedBox(
             height: MediaQuery.of(context).size.height,
             child: Image.network("https://wallpapercave.com/wp/wp2490640.jpg",
-                fit: BoxFit.cover)
-                ),
+                fit: BoxFit.cover)),
         Positioned(
             bottom: 0,
             child: Container(
@@ -49,12 +54,12 @@ class _LoginScreenState extends State<LoginScreen> {
                     hintText: 'password',
                     sufferIcon: const Icon(Icons.visibility),
                   ),
-                   Align(
+                  Align(
                     alignment: Alignment.centerRight,
                     child: GestureDetector(
                       onTap: () {
-                          Navigator.pushNamedAndRemoveUntil(
-                  context, AppRoute.forgetPassword, (route) => false);
+                        Navigator.pushNamedAndRemoveUntil(
+                            context, AppRoute.forgetPassword, (route) => false);
                       },
                       child: const Text(
                         "forgot Your Password?",
@@ -62,10 +67,14 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                     ),
                   ),
-                  const SizedBox(height:90),
+                  const SizedBox(height: 90),
                   CustomElevatedButton(
                     onTap: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context)=>const HomePageWithBottomBar()));
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) =>
+                                  const HomePageWithBottomBar()));
                     },
                     title: "LOGIN",
                     color: AppColors.buttonColor,

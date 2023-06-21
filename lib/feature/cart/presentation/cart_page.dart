@@ -3,6 +3,8 @@ import 'package:four20society/feature/checkout/presentation/check_out_screen.dar
 import 'package:four20society/global_widget/app_drawar.dart';
 import 'package:four20society/global_widget/custom_product_cart_widget.dart';
 import 'package:four20society/global_widget/app_drawar.dart';
+
+import '../../../global_widget/custom_product_card_cartpage.dart';
 class CardScreen extends StatefulWidget {
   const CardScreen({super.key});
 
@@ -39,7 +41,7 @@ class _CardScreenState extends State<CardScreen> {
       drawer: customDrawer(context: context),
 
       body: Padding(
-        padding: const EdgeInsets.all(8.0),
+        padding: const EdgeInsets.all(3.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
@@ -47,7 +49,7 @@ class _CardScreenState extends State<CardScreen> {
             child: ListView.builder(
                 itemCount: 3,
                 itemBuilder: (BuildContext context, int index) {
-                  return const CustomProductCardWidget();
+                  return const CustomProductCartCardWidget();
                 }
             ),
           ),
@@ -241,7 +243,7 @@ class _CardScreenState extends State<CardScreen> {
                                   child: const Icon(Icons.remove, size: 18, color: Color(0xff00C8B8), ),
                                 ),
                               ],
-                            )
+                            ),
                         ),
                       ],
 

@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:four20society/global_widget/custom_button.dart';
 
+import 'custom_bordered_button.dart';
+import 'custom_unbordered_button.dart';
+
 class CustomProductCardWidget extends StatelessWidget {
   const CustomProductCardWidget({super.key});
 
@@ -57,32 +60,55 @@ class CustomProductCardWidget extends StatelessWidget {
         ),
         //buttons
         const SizedBox(height: 10),
+
         Row(
-          mainAxisAlignment: MainAxisAlignment.center,
+
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            CustomElevatedButton(
-              color: const Color(0xFFCCF4F1),
-              width: MediaQuery.of(context).size.width * 0.4,
-              textStyle:
-                  const TextStyle(fontSize: 14, color: Color(0xFF00C8B8)),
-              height: 50,
-              onTap: () {},
-              title: 'Add to Cart',
-            ),
-            const SizedBox(
-              width: 20,
-            ),
-            CustomElevatedButton(
-              width: MediaQuery.of(context).size.width * 0.4,
+            // ElevatedButton(
+            //   style: ElevatedButton.styleFrom(
+            //     maximumSize:  const Size(double .infinity, double.infinity),
+            //     shape: RoundedRectangleBorder(
+            //
+            //         borderRadius: BorderRadius.circular(4)),
+            //     backgroundColor: const Color(0XFF00C8B8),
+            //   ),
+            //   onPressed: () {},
+            //   child: const Text(
+            //     "Add To cart",
+            //     style: TextStyle(
+            //       color: Colors.white,
+            //       fontSize: 18,
+            //     ),
+            //   ),
+            // ),
 
-              color: const Color(0xFFCCF4F1),
-              textStyle:
-                  const TextStyle(fontSize: 14, color: Color(0xFFFF1C1C)),
+           //  CustomElevatedButton(onTap: () {  }, title: 'Add To Cart',
+           //  ),
+           // const  Padding(padding:  EdgeInsets.all(20)),
+           //  CustomElevatedButton(onTap: () {  }, title: 'Add To Cart',),
 
-              height: 50,
-              onTap: () {},
-              title: 'Remove',
+            CustomUnBorderedElevatedButton(onTap: () {  }, title: 'Add To Cart',),
+            CustomBorderedElevatedButton(onTap: () {  }, title: 'Remove',
+
             ),
+
+            // ElevatedButton(
+            //   style: ElevatedButton.styleFrom(
+            //     shape: RoundedRectangleBorder(
+            //       //to set border radius to button
+            //         borderRadius: BorderRadius.circular(4)),
+            //     backgroundColor: const Color(0XFF00C8B8),
+            //   ),
+            //   onPressed: () {},
+            //   child: const Text(
+            //     "Remove",
+            //     style: TextStyle(
+            //       color: Colors.red,
+            //       fontSize: 16,
+            //     ),
+            //   ),
+            // ),
           ],
         ),
       ]),

@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_carousel_slider/carousel_slider.dart';
-import 'package:flutter_rating_bar/flutter_rating_bar.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:four20society/feature/notification/presentation/notification_screen.dart';
 import 'package:four20society/global_widget/app_drawar.dart';
-
 import '../../../global_widget/custom_concenrate_product.dart';
 import '../../../global_widget/custom_home_product_card.dart';
 import '../../../global_widget/custom_todays_deal_product_cart.dart';
@@ -317,84 +314,8 @@ class _DashboardScreen extends State<DashboardScreen> {
                     scrollDirection: Axis.horizontal,
                     itemCount: 10,
                     itemBuilder: (context, index) {
-                      return Container(
-                        // height: 200,
-                        width: 220,
-                        margin: const EdgeInsets.only(right: 20),
-                        padding: const EdgeInsets.all(8),
-                        child: Stack(
-                          children: [
-                            Container(
-                              margin: const EdgeInsets.only(top: 46),
-                              decoration: const BoxDecoration(
-                                color: Color(0xFF00C8B8),
-                                borderRadius: BorderRadius.only(
-                                  topLeft: Radius.circular(360),
-                                  topRight: Radius.circular(360),
-                                ),
-                              ),
-                            ),
-                            Column(
-                              mainAxisAlignment: MainAxisAlignment.spaceAround,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Align(
-                                  alignment: Alignment.topCenter,
-                                  child: Image.asset(
-                                    "assets/images/product_pic.png",
-                                    fit: BoxFit.fill,
-                                    width: 175,
-                                    height: 131,
-                                  ),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.only(left: 8.0),
-                                  child: RichText(
-                                    text: const TextSpan(
-                                      style: TextStyle(
-                                        fontSize: 16,
-                                        color: Colors.white,
-                                      ),
-                                      children: [
-                                        TextSpan(
-                                          text: '25% ',
-                                          style: TextStyle(
-                                              fontWeight: FontWeight.bold,
-                                              color: Colors.white,
-                                              fontSize: 42),
-                                        ),
-                                        TextSpan(
-                                          text: 'off\n',
-                                          style: TextStyle(
-                                              fontWeight: FontWeight.bold,
-                                              color: Colors.white,
-                                              fontSize: 18),
-                                        ),
-                                        TextSpan(
-                                          text: 'Lorem Ispum Dolor\n',
-                                          style: TextStyle(
-                                            color: Colors.white,
-                                            fontSize: 18,
-                                            fontWeight: FontWeight.w600,
-                                          ),
-                                        ),
-                                        TextSpan(
-                                          text: '\$ 152',
-                                          style: TextStyle(
-                                            color: Colors.white,
-                                            fontSize: 28,
-                                            fontWeight: FontWeight.w600,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                      );
+                       return const CustomTodayProductCardWidget();
+
 
                     },
                   ),
@@ -742,11 +663,18 @@ class _DashboardScreen extends State<DashboardScreen> {
                       ),
                       ElevatedButton(
                         style: ElevatedButton.styleFrom(
+                          shape: RoundedRectangleBorder(
+                            //to set border radius to button
+                              borderRadius: BorderRadius.circular(4)),
                           backgroundColor: const Color(0XFF00C8B8),
                         ),
                         onPressed: () {},
                         child: const Text(
                           "Shop Now",
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 16,
+                          ),
                         ),
                       ),
                     ],
