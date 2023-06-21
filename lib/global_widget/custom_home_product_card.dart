@@ -34,11 +34,14 @@ class CustomHomeProductCardWidget extends StatelessWidget {
         children: [
           SizedBox(
             height: 100,
-            width: double.infinity,
-            child: Image.network(
-              "https://excellis.co.in/420-society-world/public/storage/products/1678453548_50172_edbee168-fa13-41a1-85b6-47c81e322be7.jfif",
-              fit: BoxFit.cover,
-            ),
+            // width: double.infinity,
+            child: Image.asset('assets/images/product_pic2.png'),
+            // child: Image.network(
+            //   "https://excellis.co.in/420-society-world/public/storage/products/1678453548_50172_edbee168-fa13-41a1-85b6-47c81e322be7.jfif",
+            //   width: 184,
+            // height: 105,
+            //
+            // ),
           ),
           Container(
             padding: const EdgeInsets.only(top: 8),

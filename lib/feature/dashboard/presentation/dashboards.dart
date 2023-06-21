@@ -5,7 +5,9 @@ import 'package:flutter_svg/svg.dart';
 import 'package:four20society/feature/notification/presentation/notification_screen.dart';
 import 'package:four20society/global_widget/app_drawar.dart';
 
+import '../../../global_widget/custom_concenrate_product.dart';
 import '../../../global_widget/custom_home_product_card.dart';
+import '../../../global_widget/custom_todays_deal_product_cart.dart';
 
 class DashboardScreen extends StatefulWidget {
   const DashboardScreen({super.key});
@@ -66,13 +68,14 @@ class _DashboardScreen extends State<DashboardScreen> {
               SizedBox(
                 width: MediaQuery.of(context).size.width * 0.85,
                 child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 20.0),
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: 10.0, vertical: 20.0),
                   child: TextField(
                     decoration: InputDecoration(
                       fillColor: const Color(0xffCCF4F1),
                       filled: true,
-                      contentPadding:
-                      const EdgeInsets.symmetric(vertical: 10.0, horizontal: 15),
+                      contentPadding: const EdgeInsets.symmetric(
+                          vertical: 10.0, horizontal: 15),
                       hintText: 'What would you like ?',
                       hintStyle: TextStyle(
                         fontWeight: FontWeight.w400,
@@ -104,7 +107,8 @@ class _DashboardScreen extends State<DashboardScreen> {
                   ),
                 ),
               ),
-              SizedBox(width: MediaQuery.of(context).size.width * 0.15,
+              SizedBox(
+                width: MediaQuery.of(context).size.width * 0.15,
                 child: IconButton(
                   icon: const Icon(
                     Icons.notifications_active_outlined,
@@ -113,8 +117,7 @@ class _DashboardScreen extends State<DashboardScreen> {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) =>
-                            const NotificationScreen()));
+                            builder: (context) => const NotificationScreen()));
                   },
                 ),
               ),
@@ -134,7 +137,7 @@ class _DashboardScreen extends State<DashboardScreen> {
                       Container(
                         height: 80,
                         width: 80,
-                         margin: const EdgeInsets.all(5),
+                        margin: const EdgeInsets.all(5),
                         decoration: BoxDecoration(
                             color: Colors.transparent,
                             borderRadius: BorderRadius.circular(100),
@@ -142,13 +145,11 @@ class _DashboardScreen extends State<DashboardScreen> {
                             image: const DecorationImage(
                                 image: NetworkImage(
                                     "https://excellis.co.in/420-society-world/public/storage/products/1678453548_50172_edbee168-fa13-41a1-85b6-47c81e322be7.jfif"))),
-
                       ),
                       Text(
                         myProducts[index]["name"],
                         style: const TextStyle(
-                            color: Color.fromARGB(255, 39, 8, 8),
-                            fontSize: 16),
+                            color: Color.fromARGB(255, 39, 8, 8), fontSize: 16),
                       ),
                     ],
                   ),
@@ -217,9 +218,9 @@ class _DashboardScreen extends State<DashboardScreen> {
                       ),
                       ElevatedButton(
                         style: ElevatedButton.styleFrom(
-                          shape: RoundedRectangleBorder( //to set border radius to button
-                              borderRadius: BorderRadius.circular(4)
-                          ),
+                          shape: RoundedRectangleBorder(
+                              //to set border radius to button
+                              borderRadius: BorderRadius.circular(4)),
                           backgroundColor: const Color(0XFF00C8B8),
                         ),
                         onPressed: () {},
@@ -268,7 +269,7 @@ class _DashboardScreen extends State<DashboardScreen> {
                   ],
                 ),
                 SizedBox(
-                  height: 280,
+                  height: 276,
                   child: ListView.builder(
                     scrollDirection: Axis.horizontal,
                     itemCount: 10,
@@ -280,6 +281,7 @@ class _DashboardScreen extends State<DashboardScreen> {
               ],
             ),
           ),
+
           Container(
             height: _screenHeight * 0.45,
             // color: Colors.red,
@@ -310,12 +312,89 @@ class _DashboardScreen extends State<DashboardScreen> {
                   ],
                 ),
                 SizedBox(
-                  height: 280,
+                  height: 276,
                   child: ListView.builder(
                     scrollDirection: Axis.horizontal,
                     itemCount: 10,
                     itemBuilder: (context, index) {
-                      return const CustomHomeProductCardWidget();
+                      return Container(
+                        // height: 200,
+                        width: 220,
+                        margin: const EdgeInsets.only(right: 20),
+                        padding: const EdgeInsets.all(8),
+                        child: Stack(
+                          children: [
+                            Container(
+                              margin: const EdgeInsets.only(top: 46),
+                              decoration: const BoxDecoration(
+                                color: Color(0xFF00C8B8),
+                                borderRadius: BorderRadius.only(
+                                  topLeft: Radius.circular(360),
+                                  topRight: Radius.circular(360),
+                                ),
+                              ),
+                            ),
+                            Column(
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Align(
+                                  alignment: Alignment.topCenter,
+                                  child: Image.asset(
+                                    "assets/images/product_pic.png",
+                                    fit: BoxFit.fill,
+                                    width: 175,
+                                    height: 131,
+                                  ),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.only(left: 8.0),
+                                  child: RichText(
+                                    text: const TextSpan(
+                                      style: TextStyle(
+                                        fontSize: 16,
+                                        color: Colors.white,
+                                      ),
+                                      children: [
+                                        TextSpan(
+                                          text: '25% ',
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                              color: Colors.white,
+                                              fontSize: 42),
+                                        ),
+                                        TextSpan(
+                                          text: 'off\n',
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                              color: Colors.white,
+                                              fontSize: 18),
+                                        ),
+                                        TextSpan(
+                                          text: 'Lorem Ispum Dolor\n',
+                                          style: TextStyle(
+                                            color: Colors.white,
+                                            fontSize: 18,
+                                            fontWeight: FontWeight.w600,
+                                          ),
+                                        ),
+                                        TextSpan(
+                                          text: '\$ 152',
+                                          style: TextStyle(
+                                            color: Colors.white,
+                                            fontSize: 28,
+                                            fontWeight: FontWeight.w600,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      );
 
                     },
                   ),
@@ -364,9 +443,9 @@ class _DashboardScreen extends State<DashboardScreen> {
                       ),
                       ElevatedButton(
                         style: ElevatedButton.styleFrom(
-                          shape: RoundedRectangleBorder( //to set border radius to button
-                              borderRadius: BorderRadius.circular(4)
-                          ),
+                          shape: RoundedRectangleBorder(
+                              //to set border radius to button
+                              borderRadius: BorderRadius.circular(4)),
                           backgroundColor: const Color(0XFF00C8B8),
                         ),
                         onPressed: () {},
@@ -413,138 +492,12 @@ class _DashboardScreen extends State<DashboardScreen> {
                   ],
                 ),
                 SizedBox(
-                    height: 280,
+                    height: 276,
                     child: ListView.builder(
                         scrollDirection: Axis.horizontal,
                         itemCount: 10,
                         itemBuilder: (context, index) {
-                          return Container(
-                            width: 220,
-                            margin: const EdgeInsets.only(right: 20),
-                            padding: const EdgeInsets.all(8),
-                            decoration: BoxDecoration(
-                              color: const Color(0XFFF9F9F9),
-                              borderRadius: BorderRadius.circular(16),
-                              boxShadow: [
-                                BoxShadow(
-                                    color: Colors.black87.withOpacity(0.05),
-                                    offset: const Offset(0, 0),
-                                    blurRadius: 10,
-                                    spreadRadius: 5),
-                              ],
-                            ),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.spaceAround,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      SizedBox(
-                                        height: 100,
-                                        child: Image.network(
-                                          "https://excellis.co.in/420-society-world/public/storage/products/1678453548_50172_edbee168-fa13-41a1-85b6-47c81e322be7.jfif",
-                                          fit: BoxFit.fill,
-                                        ),
-                                      ),
-                                      const Icon(
-                                        Icons.favorite_border,
-                                        color: Colors.grey,
-                                      ),
-                                    ]),
-                                Container(
-                                  padding: const EdgeInsets.only(top: 8),
-                                  width: 150,
-                                  child: RatingBarIndicator(
-                                    rating: 4,
-                                    itemBuilder: (context, index) => const Icon(
-                                      Icons.star,
-                                      color: Colors.amber,
-                                    ),
-                                    itemCount: 5,
-                                    itemSize: 20.0,
-                                    direction: Axis.horizontal,
-                                  ),
-                                ),
-                                const SizedBox(
-                                  height: 6,
-                                ),
-                                const Text(
-                                  "Lorem ispum dopnipe fhg",
-                                  maxLines: 1,
-                                  overflow: TextOverflow.ellipsis,
-                                  style: TextStyle(
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.w600,
-                                  ),
-                                ),
-                                const Row(
-                                  children:  [
-                                    Text(
-                                      "\$ 152",
-                                      style: TextStyle(
-                                        fontSize: 28,
-                                        fontWeight: FontWeight.w600,
-                                      ),
-                                    ),
-                                    SizedBox(
-                                      width: 12,
-                                    ),
-                                    Text(
-                                      "\$ 160",
-                                      style: TextStyle(
-                                        fontSize: 20,
-                                        decoration: TextDecoration.lineThrough,
-                                        fontWeight: FontWeight.w300,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                                const Text(
-                                  "27% THC",
-                                  maxLines: 1,
-                                  overflow: TextOverflow.ellipsis,
-                                  style: TextStyle(
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.w400,
-                                  ),
-                                ),
-                                Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    const Text(
-                                      "Humboldt Farms",
-                                      maxLines: 1,
-                                      overflow: TextOverflow.ellipsis,
-                                      style: TextStyle(
-                                        fontSize: 14,
-                                        fontWeight: FontWeight.w400,
-                                      ),
-                                    ),
-                                    const SizedBox(
-                                      width: 12,
-                                    ),
-                                    GestureDetector(
-                                      onTap: () {},
-                                      child: const CircleAvatar(
-                                        minRadius: 20,
-                                        backgroundColor:
-                                             Color(0xFF00C8B8),
-                                        child: Icon(
-                                          Icons.shopping_cart_outlined,
-                                          color: Colors.white,
-                                        ),
-                                      ),
-                                    )
-                                  ],
-                                ),
-                              ],
-                            ),
-                          );
+                          return const CustomConcentrateCardWidget();
                         })),
               ],
             ),
@@ -590,9 +543,9 @@ class _DashboardScreen extends State<DashboardScreen> {
                       ),
                       ElevatedButton(
                         style: ElevatedButton.styleFrom(
-                          shape: RoundedRectangleBorder( //to set border radius to button
-                              borderRadius: BorderRadius.circular(4)
-                          ),
+                          shape: RoundedRectangleBorder(
+                              //to set border radius to button
+                              borderRadius: BorderRadius.circular(4)),
                           backgroundColor: const Color(0XFF00C8B8),
                         ),
                         onPressed: () {},
@@ -647,132 +600,7 @@ class _DashboardScreen extends State<DashboardScreen> {
                     scrollDirection: Axis.horizontal,
                     itemCount: 10,
                     itemBuilder: (context, index) {
-                      return Container(
-                        // height: 200,
-                        width: 220,
-                        margin: const EdgeInsets.only(right: 20),
-                        padding: const EdgeInsets.all(8),
-                        decoration: BoxDecoration(
-                          color: const Color(0XFFF9F9F9),
-                          borderRadius: BorderRadius.circular(16),
-                          boxShadow: [
-                            BoxShadow(
-                                color: Colors.black87.withOpacity(0.05),
-                                offset: const Offset(0, 0),
-                                blurRadius: 10,
-                                spreadRadius: 5),
-                          ],
-                        ),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  SizedBox(
-                                        height: 100,
-                                        child: Image.network(
-                                          "https://excellis.co.in/420-society-world/public/storage/products/1678453548_50172_edbee168-fa13-41a1-85b6-47c81e322be7.jfif",
-                                          fit: BoxFit.fill,
-                                        ),
-                                      ),
-                                  const Icon(
-                                    Icons.favorite_border,
-                                    color: Colors.grey,
-                                  ),
-                                ]),
-                            Container(
-                              padding: const EdgeInsets.only(top: 8),
-                              width: 150,
-                              child: RatingBarIndicator(
-                                rating: 4,
-                                itemBuilder: (context, index) => const Icon(
-                                  Icons.star,
-                                  color: Colors.amber,
-                                ),
-                                itemCount: 5,
-                                itemSize: 20.0,
-                                direction: Axis.horizontal,
-                              ),
-                            ),
-                            const SizedBox(
-                              height: 6,
-                            ),
-                            const Text(
-                              "Lorem ispum dopnipe fhg",
-                              maxLines: 1,
-                              overflow: TextOverflow.ellipsis,
-                              style: TextStyle(
-                                fontSize: 18,
-                                fontWeight: FontWeight.w600,
-                              ),
-                            ),
-                            const Row(
-                              // mainAxisAlignment: MainAxisAlignment.spaceAround,
-                              children:  [
-                                Text(
-                                  "\$ 152",
-                                  style: TextStyle(
-                                    fontSize: 28,
-                                    fontWeight: FontWeight.w600,
-                                  ),
-                                ),
-                                SizedBox(
-                                  width: 12,
-                                ),
-                                Text(
-                                  "\$ 160",
-                                  style: TextStyle(
-                                    fontSize: 20,
-                                    decoration: TextDecoration.lineThrough,
-                                    fontWeight: FontWeight.w300,
-                                  ),
-                                ),
-                              ],
-                            ),
-                            const Text(
-                              "27% THC",
-                              maxLines: 1,
-                              overflow: TextOverflow.ellipsis,
-                              style: TextStyle(
-                                fontSize: 14,
-                                fontWeight: FontWeight.w400,
-                              ),
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                const Text(
-                                  "Humboldt Farms",
-                                  maxLines: 1,
-                                  overflow: TextOverflow.ellipsis,
-                                  style: TextStyle(
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.w400,
-                                  ),
-                                ),
-                                const SizedBox(
-                                  width: 12,
-                                ),
-                                GestureDetector(
-                                  onTap: () {},
-                                  child: const CircleAvatar(
-                                    minRadius: 20,
-                                    backgroundColor: const Color(0xFF00C8B8),
-                                    child: Icon(
-                                      Icons.shopping_cart_outlined,
-                                      color: Colors.white,
-                                    ),
-                                  ),
-                                )
-                              ],
-                            ),
-                          ],
-                        ),
-                      );
+                      return const CustomConcentrateCardWidget();
                     },
                   ),
                 )
@@ -780,1157 +608,196 @@ class _DashboardScreen extends State<DashboardScreen> {
             ),
           ),
 
-          // Container(
-          //   height: _screenHeight * 0.55,
-          //   padding: const EdgeInsets.only(bottom: 15),
-          //   color: Color(0xFF00C8B8),
-          //   child: Column(
-          //     children: [
-          //       Row(
-          //         crossAxisAlignment: CrossAxisAlignment.center,
-          //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          //         children: [
-          //           Padding(
-          //             padding: EdgeInsets.only(left: 10, top: 10),
-          //             child: Text(
-          //               "Vapes",
-          //               style: TextStyle(
-          //                 fontSize: 22,
-          //                 fontWeight: FontWeight.bold,
-          //                 color: Colors.white,
-          //               ),
-          //             ),
-          //           ),
-          //           TextButton(
-          //             style: TextButton.styleFrom(
-          //               surfaceTintColor: const Color(0Xff00C8B8),
-          //             ),
-          //             onPressed: () {},
-          //             child: const Text(
-          //               "See all >",
-          //               style: TextStyle(color: Colors.white),
-          //             ),
-          //           ),
-          //         ],
-          //       ),
-          //       Expanded(
-          //         child: ListView(
-          //           padding: const EdgeInsets.all(8),
-          //           scrollDirection: Axis.horizontal,
-          //           children: [
-          //             Container(
-          //               // height: 200,
-          //               width: 220,
-          //               margin: const EdgeInsets.only(right: 20),
-          //               padding: const EdgeInsets.all(8),
-          //               decoration: BoxDecoration(
-          //                 color: const Color(0XFFF9F9F9),
-          //                 borderRadius: BorderRadius.circular(16),
-          //                 boxShadow: [
-          //                   BoxShadow(
-          //                       color: Colors.black87.withOpacity(0.05),
-          //                       offset: const Offset(0, 0),
-          //                       blurRadius: 10,
-          //                       spreadRadius: 5),
-          //                 ],
-          //               ),
-          //               child: Column(
-          //                 mainAxisAlignment: MainAxisAlignment.spaceAround,
-          //                 crossAxisAlignment: CrossAxisAlignment.start,
-          //                 children: [
-          //                   Row(
-          //                       mainAxisAlignment:
-          //                           MainAxisAlignment.spaceBetween,
-          //                       crossAxisAlignment: CrossAxisAlignment.start,
-          //                       children: [
-          //                         Image.asset(
-          //                           "assets/img/productImg.png",
-          //                           width: 150,
-          //                           height: 100,
-          //                           fit: BoxFit.fill,
-          //                         ),
-          //                         Icon(
-          //                           Icons.favorite_border,
-          //                           color: Colors.grey,
-          //                         ),
-          //                       ]),
-          //                   Container(
-          //                     padding: const EdgeInsets.only(top: 8),
-          //                     width: 150,
-          //                     child: RatingBarIndicator(
-          //                       rating: 4,
-          //                       itemBuilder: (context, index) => const Icon(
-          //                         Icons.star,
-          //                         color: Colors.amber,
-          //                       ),
-          //                       itemCount: 5,
-          //                       itemSize: 20.0,
-          //                       direction: Axis.horizontal,
-          //                     ),
-          //                   ),
-          //                   const SizedBox(
-          //                     height: 6,
-          //                   ),
-          //                   const Text(
-          //                     "Lorem ispum dopnipe fhg",
-          //                     maxLines: 1,
-          //                     overflow: TextOverflow.ellipsis,
-          //                     style: TextStyle(
-          //                       fontSize: 18,
-          //                       fontWeight: FontWeight.w600,
-          //                     ),
-          //                   ),
-          //                   Row(
-          //                     // mainAxisAlignment: MainAxisAlignment.spaceAround,
-          //                     children: const [
-          //                       Text(
-          //                         "\$ 152",
-          //                         style: TextStyle(
-          //                           fontSize: 28,
-          //                           fontWeight: FontWeight.w600,
-          //                         ),
-          //                       ),
-          //                       SizedBox(
-          //                         width: 12,
-          //                       ),
-          //                       Text(
-          //                         "\$ 160",
-          //                         style: TextStyle(
-          //                           fontSize: 20,
-          //                           decoration: TextDecoration.lineThrough,
-          //                           fontWeight: FontWeight.w300,
-          //                         ),
-          //                       ),
-          //                     ],
-          //                   ),
-          //                   const Text(
-          //                     "27% THC",
-          //                     maxLines: 1,
-          //                     overflow: TextOverflow.ellipsis,
-          //                     style: TextStyle(
-          //                       fontSize: 14,
-          //                       fontWeight: FontWeight.w400,
-          //                     ),
-          //                   ),
-          //                   Row(
-          //                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          //                     children: [
-          //                       const Text(
-          //                         "Humboldt Farms",
-          //                         maxLines: 1,
-          //                         overflow: TextOverflow.ellipsis,
-          //                         style: TextStyle(
-          //                           fontSize: 14,
-          //                           fontWeight: FontWeight.w400,
-          //                         ),
-          //                       ),
-          //                       const SizedBox(
-          //                         width: 12,
-          //                       ),
-          //                       GestureDetector(
-          //                         onTap: () {},
-          //                         child: const CircleAvatar(
-          //                           minRadius: 20,
-          //                           backgroundColor: const Color(0xFF00C8B8),
-          //                           child: Icon(
-          //                             Icons.shopping_cart_outlined,
-          //                             color: Colors.white,
-          //                           ),
-          //                         ),
-          //                       )
-          //                     ],
-          //                   ),
-          //                 ],
-          //               ),
-          //             ),
-          //             Container(
-          //               // height: 200,
-          //               width: 220,
-          //               margin: const EdgeInsets.only(right: 20),
-          //               padding: const EdgeInsets.all(8),
-          //               decoration: BoxDecoration(
-          //                 color: const Color(0XFFF9F9F9),
-          //                 borderRadius: BorderRadius.circular(16),
-          //                 boxShadow: [
-          //                   BoxShadow(
-          //                       color: Colors.black87.withOpacity(0.05),
-          //                       offset: const Offset(0, 0),
-          //                       blurRadius: 10,
-          //                       spreadRadius: 5),
-          //                 ],
-          //               ),
-          //               child: Column(
-          //                 mainAxisAlignment: MainAxisAlignment.spaceAround,
-          //                 crossAxisAlignment: CrossAxisAlignment.start,
-          //                 children: [
-          //                   Row(
-          //                       mainAxisAlignment:
-          //                           MainAxisAlignment.spaceBetween,
-          //                       crossAxisAlignment: CrossAxisAlignment.start,
-          //                       children: [
-          //                         Image.asset(
-          //                           "assets/img/productImg.png",
-          //                           width: 150,
-          //                           height: 100,
-          //                           fit: BoxFit.fill,
-          //                         ),
-          //                         Icon(
-          //                           Icons.favorite_border,
-          //                           color: Colors.grey,
-          //                         ),
-          //                       ]),
-          //                   Container(
-          //                     padding: const EdgeInsets.only(top: 8),
-          //                     width: 150,
-          //                     child: RatingBarIndicator(
-          //                       rating: 4,
-          //                       itemBuilder: (context, index) => const Icon(
-          //                         Icons.star,
-          //                         color: Colors.amber,
-          //                       ),
-          //                       itemCount: 5,
-          //                       itemSize: 20.0,
-          //                       direction: Axis.horizontal,
-          //                     ),
-          //                   ),
-          //                   const SizedBox(
-          //                     height: 6,
-          //                   ),
-          //                   const Text(
-          //                     "Lorem ispum dopnipe fhg",
-          //                     maxLines: 1,
-          //                     overflow: TextOverflow.ellipsis,
-          //                     style: TextStyle(
-          //                       fontSize: 18,
-          //                       fontWeight: FontWeight.w600,
-          //                     ),
-          //                   ),
-          //                   Row(
-          //                     // mainAxisAlignment: MainAxisAlignment.spaceAround,
-          //                     children: const [
-          //                       Text(
-          //                         "\$ 152",
-          //                         style: TextStyle(
-          //                           fontSize: 28,
-          //                           fontWeight: FontWeight.w600,
-          //                         ),
-          //                       ),
-          //                       SizedBox(
-          //                         width: 12,
-          //                       ),
-          //                       Text(
-          //                         "\$ 160",
-          //                         style: TextStyle(
-          //                           fontSize: 20,
-          //                           decoration: TextDecoration.lineThrough,
-          //                           fontWeight: FontWeight.w300,
-          //                         ),
-          //                       ),
-          //                     ],
-          //                   ),
-          //                   const Text(
-          //                     "27% THC",
-          //                     maxLines: 1,
-          //                     overflow: TextOverflow.ellipsis,
-          //                     style: TextStyle(
-          //                       fontSize: 14,
-          //                       fontWeight: FontWeight.w400,
-          //                     ),
-          //                   ),
-          //                   Row(
-          //                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          //                     children: [
-          //                       const Text(
-          //                         "Humboldt Farms",
-          //                         maxLines: 1,
-          //                         overflow: TextOverflow.ellipsis,
-          //                         style: TextStyle(
-          //                           fontSize: 14,
-          //                           fontWeight: FontWeight.w400,
-          //                         ),
-          //                       ),
-          //                       const SizedBox(
-          //                         width: 12,
-          //                       ),
-          //                       GestureDetector(
-          //                         onTap: () {},
-          //                         child: const CircleAvatar(
-          //                           minRadius: 20,
-          //                           backgroundColor: const Color(0xFF00C8B8),
-          //                           child: Icon(
-          //                             Icons.shopping_cart_outlined,
-          //                             color: Colors.white,
-          //                           ),
-          //                         ),
-          //                       )
-          //                     ],
-          //                   ),
-          //                 ],
-          //               ),
-          //             ),
-          //           ],
-          //         ),
-          //       ),
-          //     ],
-          //   ),
-          // ),
+          Container(
+            height: _screenHeight * 0.50,
+            padding: const EdgeInsets.only(bottom: 15),
+            color: Color(0xFF00C8B8),
+            child: Column(
+              children: [
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                   const Padding(
+                      padding: EdgeInsets.only(left: 10, top: 10),
+                      child: Text(
+                        "Vapes",
+                        style: TextStyle(
+                          fontSize: 22,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ),
+                    TextButton(
+                      style: TextButton.styleFrom(
+                        surfaceTintColor: const Color(0Xff00C8B8),
+                      ),
+                      onPressed: () {},
+                      child: const Text(
+                        "See all >",
+                        style: TextStyle(color: Colors.white),
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: 276,
+                  child: ListView.builder(
+                    scrollDirection: Axis.horizontal,
+                    itemCount: 10,
+                    itemBuilder: (context, index) {
+                      return const CustomConcentrateCardWidget();
+                    },
+                  ),
+                )
+              ],
+            ),
+          ),
 
-          // Container(
-          //   height: _screenHeight * 0.45,
-          //   // color: Colors.red,
-          //   margin: const EdgeInsets.all(12),
-          //   child: Column(
-          //     children: [
-          //       Row(
-          //         crossAxisAlignment: CrossAxisAlignment.center,
-          //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          //         children: [
-          //           const Text(
-          //             "Pre-rolls",
-          //             style:
-          //                 TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
-          //           ),
-          //           TextButton(
-          //             style: TextButton.styleFrom(
-          //               surfaceTintColor: const Color(0Xff00C8B8),
-          //             ),
-          //             onPressed: () {},
-          //             child: const Text(
-          //               "See all >",
-          //               style: TextStyle(
-          //                 color: Color(0Xff00C8B8),
-          //               ),
-          //             ),
-          //           ),
-          //         ],
-          //       ),
-          //       Expanded(
-          //         child: ListView(
-          //           padding: const EdgeInsets.all(8),
-          //           scrollDirection: Axis.horizontal,
-          //           children: [
-          //             Container(
-          //               width: 220,
-          //               margin: const EdgeInsets.only(right: 20),
-          //               padding: const EdgeInsets.all(8),
-          //               decoration: BoxDecoration(
-          //                 color: const Color(0XFFF9F9F9),
-          //                 borderRadius: BorderRadius.circular(16),
-          //                 boxShadow: [
-          //                   BoxShadow(
-          //                       color: Colors.black87.withOpacity(0.05),
-          //                       offset: const Offset(0, 0),
-          //                       blurRadius: 10,
-          //                       spreadRadius: 5),
-          //                 ],
-          //               ),
-          //               child: Column(
-          //                 mainAxisAlignment: MainAxisAlignment.spaceAround,
-          //                 crossAxisAlignment: CrossAxisAlignment.start,
-          //                 children: [
-          //                   Row(
-          //                       mainAxisAlignment:
-          //                           MainAxisAlignment.spaceBetween,
-          //                       crossAxisAlignment: CrossAxisAlignment.start,
-          //                       children: [
-          //                         Image.asset(
-          //                           "assets/img/productImg.png",
-          //                           width: 150,
-          //                           height: 100,
-          //                           fit: BoxFit.fill,
-          //                         ),
-          //                         Icon(
-          //                           Icons.favorite_border,
-          //                           color: Colors.grey,
-          //                         ),
-          //                       ]),
-          //                   Container(
-          //                     padding: const EdgeInsets.only(top: 8),
-          //                     width: 150,
-          //                     child: RatingBarIndicator(
-          //                       rating: 4,
-          //                       itemBuilder: (context, index) => const Icon(
-          //                         Icons.star,
-          //                         color: Colors.amber,
-          //                       ),
-          //                       itemCount: 5,
-          //                       itemSize: 20.0,
-          //                       direction: Axis.horizontal,
-          //                     ),
-          //                   ),
-          //                   const SizedBox(
-          //                     height: 6,
-          //                   ),
-          //                   const Text(
-          //                     "Lorem ispum dopnipe fhg",
-          //                     maxLines: 1,
-          //                     overflow: TextOverflow.ellipsis,
-          //                     style: TextStyle(
-          //                       fontSize: 18,
-          //                       fontWeight: FontWeight.w600,
-          //                     ),
-          //                   ),
-          //                   Row(
-          //                     children: const [
-          //                       Text(
-          //                         "\$ 152",
-          //                         style: TextStyle(
-          //                           fontSize: 28,
-          //                           fontWeight: FontWeight.w600,
-          //                         ),
-          //                       ),
-          //                       SizedBox(
-          //                         width: 12,
-          //                       ),
-          //                       Text(
-          //                         "\$ 160",
-          //                         style: TextStyle(
-          //                           fontSize: 20,
-          //                           decoration: TextDecoration.lineThrough,
-          //                           fontWeight: FontWeight.w300,
-          //                         ),
-          //                       ),
-          //                     ],
-          //                   ),
-          //                   const Text(
-          //                     "27% THC",
-          //                     maxLines: 1,
-          //                     overflow: TextOverflow.ellipsis,
-          //                     style: TextStyle(
-          //                       fontSize: 14,
-          //                       fontWeight: FontWeight.w400,
-          //                     ),
-          //                   ),
-          //                   Row(
-          //                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          //                     children: [
-          //                       const Text(
-          //                         "Humboldt Farms",
-          //                         maxLines: 1,
-          //                         overflow: TextOverflow.ellipsis,
-          //                         style: TextStyle(
-          //                           fontSize: 14,
-          //                           fontWeight: FontWeight.w400,
-          //                         ),
-          //                       ),
-          //                       const SizedBox(
-          //                         width: 12,
-          //                       ),
-          //                       GestureDetector(
-          //                         onTap: () {},
-          //                         child: const CircleAvatar(
-          //                           minRadius: 20,
-          //                           backgroundColor: const Color(0xFF00C8B8),
-          //                           child: Icon(
-          //                             Icons.shopping_cart_outlined,
-          //                             color: Colors.white,
-          //                           ),
-          //                         ),
-          //                       )
-          //                     ],
-          //                   ),
-          //                 ],
-          //               ),
-          //             ),
-          //             Container(
-          //               width: 220,
-          //               margin: const EdgeInsets.only(right: 20),
-          //               padding: const EdgeInsets.all(8),
-          //               decoration: BoxDecoration(
-          //                 color: const Color(0XFFF9F9F9),
-          //                 borderRadius: BorderRadius.circular(16),
-          //                 boxShadow: [
-          //                   BoxShadow(
-          //                       color: Colors.black87.withOpacity(0.05),
-          //                       offset: const Offset(0, 0),
-          //                       blurRadius: 10,
-          //                       spreadRadius: 5),
-          //                 ],
-          //               ),
-          //               child: Column(
-          //                 mainAxisAlignment: MainAxisAlignment.spaceAround,
-          //                 crossAxisAlignment: CrossAxisAlignment.start,
-          //                 children: [
-          //                   Row(
-          //                       mainAxisAlignment:
-          //                           MainAxisAlignment.spaceBetween,
-          //                       crossAxisAlignment: CrossAxisAlignment.start,
-          //                       children: [
-          //                         Image.asset(
-          //                           "assets/img/productImg.png",
-          //                           width: 150,
-          //                           height: 100,
-          //                           fit: BoxFit.fill,
-          //                         ),
-          //                         Icon(
-          //                           Icons.favorite_border,
-          //                           color: Colors.grey,
-          //                         ),
-          //                       ]),
-          //                   Container(
-          //                     padding: const EdgeInsets.only(top: 8),
-          //                     width: 150,
-          //                     child: RatingBarIndicator(
-          //                       rating: 4,
-          //                       itemBuilder: (context, index) => const Icon(
-          //                         Icons.star,
-          //                         color: Colors.amber,
-          //                       ),
-          //                       itemCount: 5,
-          //                       itemSize: 20.0,
-          //                       direction: Axis.horizontal,
-          //                     ),
-          //                   ),
-          //                   const SizedBox(
-          //                     height: 6,
-          //                   ),
-          //                   const Text(
-          //                     "Lorem ispum dopnipe fhg",
-          //                     maxLines: 1,
-          //                     overflow: TextOverflow.ellipsis,
-          //                     style: TextStyle(
-          //                       fontSize: 18,
-          //                       fontWeight: FontWeight.w600,
-          //                     ),
-          //                   ),
-          //                   Row(
-          //                     // mainAxisAlignment: MainAxisAlignment.spaceAround,
-          //                     children: const [
-          //                       Text(
-          //                         "\$ 152",
-          //                         style: TextStyle(
-          //                           fontSize: 28,
-          //                           fontWeight: FontWeight.w600,
-          //                         ),
-          //                       ),
-          //                       SizedBox(
-          //                         width: 12,
-          //                       ),
-          //                       Text(
-          //                         "\$ 160",
-          //                         style: TextStyle(
-          //                           fontSize: 20,
-          //                           decoration: TextDecoration.lineThrough,
-          //                           fontWeight: FontWeight.w300,
-          //                         ),
-          //                       ),
-          //                     ],
-          //                   ),
-          //                   const Text(
-          //                     "27% THC",
-          //                     maxLines: 1,
-          //                     overflow: TextOverflow.ellipsis,
-          //                     style: TextStyle(
-          //                       fontSize: 14,
-          //                       fontWeight: FontWeight.w400,
-          //                     ),
-          //                   ),
-          //                   Row(
-          //                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          //                     children: [
-          //                       const Text(
-          //                         "Humboldt Farms",
-          //                         maxLines: 1,
-          //                         overflow: TextOverflow.ellipsis,
-          //                         style: TextStyle(
-          //                           fontSize: 14,
-          //                           fontWeight: FontWeight.w400,
-          //                         ),
-          //                       ),
-          //                       const SizedBox(
-          //                         width: 12,
-          //                       ),
-          //                       GestureDetector(
-          //                         onTap: () {},
-          //                         child: const CircleAvatar(
-          //                           minRadius: 20,
-          //                           backgroundColor: const Color(0xFF00C8B8),
-          //                           child: Icon(
-          //                             Icons.shopping_cart_outlined,
-          //                             color: Colors.white,
-          //                           ),
-          //                         ),
-          //                       )
-          //                     ],
-          //                   ),
-          //                 ],
-          //               ),
-          //             ),
-          //             Container(
-          //               // height: 200,
-          //               width: 220,
-          //               margin: const EdgeInsets.only(right: 20),
-          //               padding: const EdgeInsets.all(8),
-          //               decoration: BoxDecoration(
-          //                 color: const Color(0XFFF9F9F9),
-          //                 borderRadius: BorderRadius.circular(16),
-          //                 boxShadow: [
-          //                   BoxShadow(
-          //                       color: Colors.black87.withOpacity(0.05),
-          //                       offset: const Offset(0, 0),
-          //                       blurRadius: 10,
-          //                       spreadRadius: 5),
-          //                 ],
-          //               ),
-          //               child: Column(
-          //                 mainAxisAlignment: MainAxisAlignment.spaceAround,
-          //                 crossAxisAlignment: CrossAxisAlignment.start,
-          //                 children: [
-          //                   Image.asset(
-          //                     "assets/img/jeff-w-1ieS-iMjnAU-unsplash-removebg-preview.png",
-          //                     fit: BoxFit.fill,
-          //                   ),
-          //                   Container(
-          //                     padding: const EdgeInsets.only(top: 8),
-          //                     width: 150,
-          //                     child: RatingBarIndicator(
-          //                       rating: 4,
-          //                       itemBuilder: (context, index) => const Icon(
-          //                         Icons.star,
-          //                         color: Colors.amber,
-          //                       ),
-          //                       itemCount: 5,
-          //                       itemSize: 20.0,
-          //                       direction: Axis.horizontal,
-          //                     ),
-          //                   ),
-          //                   const SizedBox(
-          //                     height: 6,
-          //                   ),
-          //                   const Text(
-          //                     "Lorem ispum dopnipe fhg",
-          //                     maxLines: 1,
-          //                     overflow: TextOverflow.ellipsis,
-          //                     style: TextStyle(
-          //                       fontSize: 18,
-          //                       fontWeight: FontWeight.w600,
-          //                     ),
-          //                   ),
-          //                   Row(
-          //                     // mainAxisAlignment: MainAxisAlignment.spaceAround,
-          //                     children: const [
-          //                       Text(
-          //                         "\$ 152",
-          //                         style: TextStyle(
-          //                           fontSize: 28,
-          //                           fontWeight: FontWeight.w600,
-          //                         ),
-          //                       ),
-          //                       SizedBox(
-          //                         width: 12,
-          //                       ),
-          //                       Text(
-          //                         "\$ 160",
-          //                         style: TextStyle(
-          //                           fontSize: 20,
-          //                           decoration: TextDecoration.lineThrough,
-          //                           fontWeight: FontWeight.w300,
-          //                         ),
-          //                       ),
-          //                     ],
-          //                   ),
-          //                   const Text(
-          //                     "27% THC",
-          //                     maxLines: 1,
-          //                     overflow: TextOverflow.ellipsis,
-          //                     style: TextStyle(
-          //                       fontSize: 14,
-          //                       fontWeight: FontWeight.w400,
-          //                     ),
-          //                   ),
-          //                   Row(
-          //                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          //                     children: [
-          //                       const Text(
-          //                         "Humboldt Farms",
-          //                         maxLines: 1,
-          //                         overflow: TextOverflow.ellipsis,
-          //                         style: TextStyle(
-          //                           fontSize: 14,
-          //                           fontWeight: FontWeight.w400,
-          //                         ),
-          //                       ),
-          //                       const SizedBox(
-          //                         width: 12,
-          //                       ),
-          //                       GestureDetector(
-          //                         onTap: () {},
-          //                         child: const CircleAvatar(
-          //                           minRadius: 20,
-          //                           backgroundColor: const Color(0xFF00C8B8),
-          //                           child: Icon(
-          //                             Icons.shopping_cart_outlined,
-          //                             color: Colors.white,
-          //                           ),
-          //                         ),
-          //                       )
-          //                     ],
-          //                   ),
-          //                 ],
-          //               ),
-          //             ),
-          //             Container(
-          //               // height: 200,
-          //               width: 220,
-          //               margin: const EdgeInsets.only(right: 20),
-          //               padding: const EdgeInsets.all(8),
-          //               decoration: BoxDecoration(
-          //                 color: const Color(0XFFF9F9F9),
-          //                 borderRadius: BorderRadius.circular(16),
-          //                 boxShadow: [
-          //                   BoxShadow(
-          //                       color: Colors.black87.withOpacity(0.05),
-          //                       offset: const Offset(0, 0),
-          //                       blurRadius: 10,
-          //                       spreadRadius: 5),
-          //                 ],
-          //               ),
-          //               child: Column(
-          //                 mainAxisAlignment: MainAxisAlignment.spaceAround,
-          //                 crossAxisAlignment: CrossAxisAlignment.start,
-          //                 children: [
-          //                   Image.asset(
-          //                     "assets/img/budding-GbXiiO6OrJs-unsplash-removebg-preview.png",
-          //                     fit: BoxFit.fill,
-          //                     // width: 180,
-          //                   ),
-          //                   Container(
-          //                     padding: const EdgeInsets.only(top: 8),
-          //                     width: 150,
-          //                     child: RatingBarIndicator(
-          //                       rating: 4,
-          //                       itemBuilder: (context, index) => const Icon(
-          //                         Icons.star,
-          //                         color: Colors.amber,
-          //                       ),
-          //                       itemCount: 5,
-          //                       itemSize: 20.0,
-          //                       direction: Axis.horizontal,
-          //                     ),
-          //                   ),
-          //                   const SizedBox(
-          //                     height: 6,
-          //                   ),
-          //                   const Text(
-          //                     "Lorem ispum dopnipe fhg",
-          //                     maxLines: 1,
-          //                     overflow: TextOverflow.ellipsis,
-          //                     style: TextStyle(
-          //                       fontSize: 18,
-          //                       fontWeight: FontWeight.w600,
-          //                     ),
-          //                   ),
-          //                   Row(
-          //                     // mainAxisAlignment: MainAxisAlignment.spaceAround,
-          //                     children: const [
-          //                       Text(
-          //                         "\$ 152",
-          //                         style: TextStyle(
-          //                           fontSize: 28,
-          //                           fontWeight: FontWeight.w600,
-          //                         ),
-          //                       ),
-          //                       SizedBox(
-          //                         width: 12,
-          //                       ),
-          //                       Text(
-          //                         "\$ 160",
-          //                         style: TextStyle(
-          //                           fontSize: 20,
-          //                           decoration: TextDecoration.lineThrough,
-          //                           fontWeight: FontWeight.w300,
-          //                         ),
-          //                       ),
-          //                     ],
-          //                   ),
-          //                   const Text(
-          //                     "27% THC",
-          //                     maxLines: 1,
-          //                     overflow: TextOverflow.ellipsis,
-          //                     style: TextStyle(
-          //                       fontSize: 14,
-          //                       fontWeight: FontWeight.w400,
-          //                     ),
-          //                   ),
-          //                   Row(
-          //                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          //                     children: [
-          //                       const Text(
-          //                         "Humboldt Farms",
-          //                         maxLines: 1,
-          //                         overflow: TextOverflow.ellipsis,
-          //                         style: TextStyle(
-          //                           fontSize: 14,
-          //                           fontWeight: FontWeight.w400,
-          //                         ),
-          //                       ),
-          //                       const SizedBox(
-          //                         width: 12,
-          //                       ),
-          //                       GestureDetector(
-          //                         onTap: () {},
-          //                         child: const CircleAvatar(
-          //                           minRadius: 20,
-          //                           backgroundColor: const Color(0xFF00C8B8),
-          //                           child: Icon(
-          //                             Icons.shopping_cart_outlined,
-          //                             color: Colors.white,
-          //                           ),
-          //                         ),
-          //                       )
-          //                     ],
-          //                   ),
-          //                 ],
-          //               ),
-          //             ),
-          //           ],
-          //         ),
-          //       ),
-          //     ],
-          //   ),
-          // ),
-          // Container(
-          //   height: _screenHeight * 0.2,
-          //   margin: const EdgeInsets.all(12),
-          //   child: Stack(
-          //     fit: StackFit.expand,
-          //     children: [
-          //       Image.asset(
-          //         "assets/img/Mask group.png",
-          //         fit: BoxFit.fitHeight,
-          //       ),
-          //       Padding(
-          //         padding: const EdgeInsets.only(left: 18),
-          //         child: Column(
-          //           mainAxisAlignment: MainAxisAlignment.center,
-          //           crossAxisAlignment: CrossAxisAlignment.center,
-          //           children: [
-          //             RichText(
-          //               text: const TextSpan(
-          //                 style: TextStyle(
-          //                     fontSize: 16, color: Colors.white, height: 0.8),
-          //                 children: [
-          //                   TextSpan(
-          //                     text: 'Cannabis\n',
-          //                     style: TextStyle(
-          //                         fontWeight: FontWeight.w400,
-          //                         color: Colors.white,
-          //                         fontSize: 26),
-          //                   ),
-          //                   TextSpan(
-          //                     text: 'Drinks',
-          //                     style: TextStyle(
-          //                         fontWeight: FontWeight.bold,
-          //                         color: Colors.white,
-          //                         height: 1.2,
-          //                         fontSize: 22),
-          //                   ),
-          //                 ],
-          //               ),
-          //             ),
-          //             ElevatedButton(
-          //               style: ElevatedButton.styleFrom(
-          //                 backgroundColor: const Color(0XFF00C8B8),
-          //               ),
-          //               onPressed: () {},
-          //               child: const Text(
-          //                 "Shop Now",
-          //               ),
-          //             ),
-          //           ],
-          //         ),
-          //       ),
-          //     ],
-          //   ),
-          // ),
+          Container(
+            height: _screenHeight * 0.45,
+            // color: Colors.red,
+            margin: const EdgeInsets.all(12),
+            child: Column(
+              children: [
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    const Text(
+                      "Pre-rolls",
+                      style:
+                          TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+                    ),
+                    TextButton(
+                      style: TextButton.styleFrom(
+                        surfaceTintColor: const Color(0Xff00C8B8),
+                      ),
+                      onPressed: () {},
+                      child: const Text(
+                        "See all >",
+                        style: TextStyle(
+                          color: Color(0Xff00C8B8),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: 276,
+                  child: ListView.builder(
+                    scrollDirection: Axis.horizontal,
+                    itemCount: 10,
+                    itemBuilder: (context, index) {
+                      return const CustomConcentrateCardWidget();
+                    },
+                  ),
+                )
+              ],
+            ),
+          ),
+          Container(
+            height: _screenHeight * 0.2,
+            margin: const EdgeInsets.all(12),
+            child: Stack(
+              fit: StackFit.expand,
+              children: [
+                Image.network(
+                  "https://excellis.co.in/420-society-world/frontend_assets/images/canabi.png",
+                  fit: BoxFit.fill,
+                ),
+                // Image.asset(
+                //   "assets/img/Mask group.png",
+                //   fit: BoxFit.fitHeight,
+                // ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 18),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      RichText(
+                        text: const TextSpan(
+                          style: TextStyle(
+                              fontSize: 16, color: Colors.white, height: 0.8),
+                          children: [
+                            TextSpan(
+                              text: 'Cannabis\n',
+                              style: TextStyle(
+                                  fontWeight: FontWeight.w400,
+                                  color: Colors.white,
+                                  fontSize: 26),
+                            ),
+                            TextSpan(
+                              text: 'Drinks',
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.white,
+                                  height: 1.2,
+                                  fontSize: 22),
+                            ),
+                          ],
+                        ),
+                      ),
+                      ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: const Color(0XFF00C8B8),
+                        ),
+                        onPressed: () {},
+                        child: const Text(
+                          "Shop Now",
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
 
-          // Container(
-          //   height: _screenHeight * 0.45,
-          //   // color: Colors.red,
-          //   margin: const EdgeInsets.all(12),
-          //   child: Column(
-          //     children: [
-          //       Row(
-          //         crossAxisAlignment: CrossAxisAlignment.center,
-          //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          //         children: [
-          //           const Text(
-          //             "Drinks",
-          //             style:
-          //                 TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
-          //           ),
-          //           TextButton(
-          //             style: TextButton.styleFrom(
-          //               surfaceTintColor: const Color(0Xff00C8B8),
-          //             ),
-          //             onPressed: () {},
-          //             child: const Text(
-          //               "See all >",
-          //               style: TextStyle(
-          //                 color: Color(0Xff00C8B8),
-          //               ),
-          //             ),
-          //           ),
-          //         ],
-          //       ),
-          //       Expanded(
-          //         child: ListView(
-          //           padding: const EdgeInsets.all(8),
-          //           scrollDirection: Axis.horizontal,
-          //           children: [
-          //             Container(
-          //               width: 220,
-          //               margin: const EdgeInsets.only(right: 20),
-          //               padding: const EdgeInsets.all(8),
-          //               decoration: BoxDecoration(
-          //                 color: const Color(0XFFF9F9F9),
-          //                 borderRadius: BorderRadius.circular(16),
-          //                 boxShadow: [
-          //                   BoxShadow(
-          //                       color: Colors.black87.withOpacity(0.05),
-          //                       offset: const Offset(0, 0),
-          //                       blurRadius: 10,
-          //                       spreadRadius: 5),
-          //                 ],
-          //               ),
-          //               child: Column(
-          //                 mainAxisAlignment: MainAxisAlignment.spaceAround,
-          //                 crossAxisAlignment: CrossAxisAlignment.start,
-          //                 children: [
-          //                   Row(
-          //                       mainAxisAlignment:
-          //                           MainAxisAlignment.spaceBetween,
-          //                       crossAxisAlignment: CrossAxisAlignment.start,
-          //                       children: [
-          //                         Image.asset(
-          //                           "assets/img/productImg.png",
-          //                           width: 150,
-          //                           height: 100,
-          //                           fit: BoxFit.fill,
-          //                         ),
-          //                         Icon(
-          //                           Icons.favorite_border,
-          //                           color: Colors.grey,
-          //                         ),
-          //                       ]),
-          //                   Container(
-          //                     padding: const EdgeInsets.only(top: 8),
-          //                     width: 150,
-          //                     child: RatingBarIndicator(
-          //                       rating: 4,
-          //                       itemBuilder: (context, index) => const Icon(
-          //                         Icons.star,
-          //                         color: Colors.amber,
-          //                       ),
-          //                       itemCount: 5,
-          //                       itemSize: 20.0,
-          //                       direction: Axis.horizontal,
-          //                     ),
-          //                   ),
-          //                   const SizedBox(
-          //                     height: 6,
-          //                   ),
-          //                   const Text(
-          //                     "Lorem ispum dopnipe fhg",
-          //                     maxLines: 1,
-          //                     overflow: TextOverflow.ellipsis,
-          //                     style: TextStyle(
-          //                       fontSize: 18,
-          //                       fontWeight: FontWeight.w600,
-          //                     ),
-          //                   ),
-          //                   Row(
-          //                     children: const [
-          //                       Text(
-          //                         "\$ 152",
-          //                         style: TextStyle(
-          //                           fontSize: 28,
-          //                           fontWeight: FontWeight.w600,
-          //                         ),
-          //                       ),
-          //                       SizedBox(
-          //                         width: 12,
-          //                       ),
-          //                       Text(
-          //                         "\$ 160",
-          //                         style: TextStyle(
-          //                           fontSize: 20,
-          //                           decoration: TextDecoration.lineThrough,
-          //                           fontWeight: FontWeight.w300,
-          //                         ),
-          //                       ),
-          //                     ],
-          //                   ),
-          //                   const Text(
-          //                     "27% THC",
-          //                     maxLines: 1,
-          //                     overflow: TextOverflow.ellipsis,
-          //                     style: TextStyle(
-          //                       fontSize: 14,
-          //                       fontWeight: FontWeight.w400,
-          //                     ),
-          //                   ),
-          //                   Row(
-          //                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          //                     children: [
-          //                       const Text(
-          //                         "Humboldt Farms",
-          //                         maxLines: 1,
-          //                         overflow: TextOverflow.ellipsis,
-          //                         style: TextStyle(
-          //                           fontSize: 14,
-          //                           fontWeight: FontWeight.w400,
-          //                         ),
-          //                       ),
-          //                       const SizedBox(
-          //                         width: 12,
-          //                       ),
-          //                       GestureDetector(
-          //                         onTap: () {},
-          //                         child: const CircleAvatar(
-          //                           minRadius: 20,
-          //                           backgroundColor: const Color(0xFF00C8B8),
-          //                           child: Icon(
-          //                             Icons.shopping_cart_outlined,
-          //                             color: Colors.white,
-          //                           ),
-          //                         ),
-          //                       )
-          //                     ],
-          //                   ),
-          //                 ],
-          //               ),
-          //             ),
-          //             Container(
-          //               width: 220,
-          //               margin: const EdgeInsets.only(right: 20),
-          //               padding: const EdgeInsets.all(8),
-          //               decoration: BoxDecoration(
-          //                 color: const Color(0XFFF9F9F9),
-          //                 borderRadius: BorderRadius.circular(16),
-          //                 boxShadow: [
-          //                   BoxShadow(
-          //                       color: Colors.black87.withOpacity(0.05),
-          //                       offset: const Offset(0, 0),
-          //                       blurRadius: 10,
-          //                       spreadRadius: 5),
-          //                 ],
-          //               ),
-          //               child: Column(
-          //                 mainAxisAlignment: MainAxisAlignment.spaceAround,
-          //                 crossAxisAlignment: CrossAxisAlignment.start,
-          //                 children: [
-          //                   Row(
-          //                       mainAxisAlignment:
-          //                           MainAxisAlignment.spaceBetween,
-          //                       crossAxisAlignment: CrossAxisAlignment.start,
-          //                       children: [
-          //                         Image.asset(
-          //                           "assets/img/productImg.png",
-          //                           width: 150,
-          //                           height: 100,
-          //                           fit: BoxFit.fill,
-          //                         ),
-          //                         Icon(
-          //                           Icons.favorite_border,
-          //                           color: Colors.grey,
-          //                         ),
-          //                       ]),
-          //                   Container(
-          //                     padding: const EdgeInsets.only(top: 8),
-          //                     width: 150,
-          //                     child: RatingBarIndicator(
-          //                       rating: 4,
-          //                       itemBuilder: (context, index) => const Icon(
-          //                         Icons.star,
-          //                         color: Colors.amber,
-          //                       ),
-          //                       itemCount: 5,
-          //                       itemSize: 20.0,
-          //                       direction: Axis.horizontal,
-          //                     ),
-          //                   ),
-          //                   const SizedBox(
-          //                     height: 6,
-          //                   ),
-          //                   const Text(
-          //                     "Lorem ispum dopnipe fhg",
-          //                     maxLines: 1,
-          //                     overflow: TextOverflow.ellipsis,
-          //                     style: TextStyle(
-          //                       fontSize: 18,
-          //                       fontWeight: FontWeight.w600,
-          //                     ),
-          //                   ),
-          //                   Row(
-          //                     // mainAxisAlignment: MainAxisAlignment.spaceAround,
-          //                     children: const [
-          //                       Text(
-          //                         "\$ 152",
-          //                         style: TextStyle(
-          //                           fontSize: 28,
-          //                           fontWeight: FontWeight.w600,
-          //                         ),
-          //                       ),
-          //                       SizedBox(
-          //                         width: 12,
-          //                       ),
-          //                       Text(
-          //                         "\$ 160",
-          //                         style: TextStyle(
-          //                           fontSize: 20,
-          //                           decoration: TextDecoration.lineThrough,
-          //                           fontWeight: FontWeight.w300,
-          //                         ),
-          //                       ),
-          //                     ],
-          //                   ),
-          //                   const Text(
-          //                     "27% THC",
-          //                     maxLines: 1,
-          //                     overflow: TextOverflow.ellipsis,
-          //                     style: TextStyle(
-          //                       fontSize: 14,
-          //                       fontWeight: FontWeight.w400,
-          //                     ),
-          //                   ),
-          //                   Row(
-          //                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          //                     children: [
-          //                       const Text(
-          //                         "Humboldt Farms",
-          //                         maxLines: 1,
-          //                         overflow: TextOverflow.ellipsis,
-          //                         style: TextStyle(
-          //                           fontSize: 14,
-          //                           fontWeight: FontWeight.w400,
-          //                         ),
-          //                       ),
-          //                       const SizedBox(
-          //                         width: 12,
-          //                       ),
-          //                       GestureDetector(
-          //                         onTap: () {},
-          //                         child: const CircleAvatar(
-          //                           minRadius: 20,
-          //                           backgroundColor: const Color(0xFF00C8B8),
-          //                           child: Icon(
-          //                             Icons.shopping_cart_outlined,
-          //                             color: Colors.white,
-          //                           ),
-          //                         ),
-          //                       )
-          //                     ],
-          //                   ),
-          //                 ],
-          //               ),
-          //             ),
-          //           ],
-          //         ),
-          //       ),
-          //     ],
-          //   ),
-          // ),
+          Container(
+            height: _screenHeight * 0.45,
+            // color: Colors.red,
+            margin: const EdgeInsets.all(12),
+            child: Column(
+              children: [
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    const Text(
+                      "Drinks",
+                      style:
+                          TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+                    ),
+                    TextButton(
+                      style: TextButton.styleFrom(
+                        surfaceTintColor: const Color(0Xff00C8B8),
+                      ),
+                      onPressed: () {},
+                      child: const Text(
+                        "See all >",
+                        style: TextStyle(
+                          color: Color(0Xff00C8B8),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: 276,
+                  child: ListView.builder(
+                    scrollDirection: Axis.horizontal,
+                    itemCount: 10,
+                    itemBuilder: (context, index) {
+                      return const CustomConcentrateCardWidget();
+                    },
+                  ),
+                )
+              ],
+            ),
+          ),
         ],
       ),
     );
