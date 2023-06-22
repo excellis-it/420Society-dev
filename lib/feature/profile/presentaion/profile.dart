@@ -1,9 +1,11 @@
+import 'dart:io';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:flutter/services.dart';
 import 'package:four20society/feature/change_password/presentation/change_password%20(1).dart';
 import 'package:four20society/feature/notification/presentation/notification_screen.dart';
 import 'package:four20society/feature/profile/presentaion/personalDetails.dart';
+import 'package:image_picker/image_picker.dart';
 
 class UserProfileScreen extends StatefulWidget {
   const UserProfileScreen({super.key});
@@ -13,8 +15,83 @@ class UserProfileScreen extends StatefulWidget {
 }
 
 class _UserProfileScreenState extends State<UserProfileScreen> {
+  File? galleryFile;
+  final picker = ImagePicker();
+
+  late File imageFile;
+
   @override
   Widget build(BuildContext context) {
+    // File? image;
+
+    // ImagePicker picker = ImagePicker();
+    // XFile? image;
+    // Future<void> getImage() async {
+    //   var image = await ImagePicker.pickImage(source: ImageSource.gallery);
+    //   setState(() {
+    //     _image = image;
+    //   });
+    // }
+
+//     XFile? image;
+//
+//     final ImagePicker picker = ImagePicker();
+//
+// //   //we can upload image from camera or from gallery based on parameter
+//     Future getImage(ImageSource media) async {
+//       var img = await picker.pickImage(source: media);
+// //
+//       setState(() {
+//         image = img;
+//       });
+//     }
+
+    //   //show popup dialog
+    // void myAlert() {
+    //   showDialog(
+    //       context: context,
+    //       builder: (BuildContext context) {
+    //         return AlertDialog(
+    //           shape: RoundedRectangleBorder(
+    //               borderRadius: BorderRadius.circular(8)),
+    //           title: const Text('Please choose media to select'),
+    //           content: Container(
+    //             height: MediaQuery.of(context).size.height / 6,
+    //             child: Column(
+    //               children: [
+    //                 ElevatedButton(
+    //                   //if user click this button, user can upload image from gallery
+    //                   onPressed: () {
+    //                     Navigator.pop(context);
+    //                     getImage(ImageSource.gallery);
+    //                   },
+    //                   child: const Row(
+    //                     children: [
+    //                       Icon(Icons.image),
+    //                       Text('From Gallery'),
+    //                     ],
+    //                   ),
+    //                 ),
+    //                 ElevatedButton(
+    //                   //if user click this button. user can upload image from camera
+    //                   onPressed: () {
+    //                     Navigator.pop(context);
+    //                     getImage(ImageSource.camera);
+    //                   },
+    //                   child: const Row(
+    //                     children: [
+    //                       Icon(Icons.camera),
+    //                       Text('From Camera'),
+    //                     ],
+    //                   ),
+    //                 ),
+    //               ],
+    //             ),
+    //           ),
+    //         );
+    //       });
+    // }
+
     final _screenHeight = MediaQuery.of(context).size.height -
         kToolbarHeight -
         MediaQuery.of(context).padding.top;
@@ -30,7 +107,10 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
         actions: [
           IconButton(
             onPressed: () {
-              Navigator.push(context, MaterialPageRoute(builder: (_)=>const NotificationScreen()));
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (_) => const NotificationScreen()));
             },
             icon: const Icon(
               Icons.notifications_active_outlined,
@@ -38,7 +118,6 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
             ),
           ),
         ],
-     
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -60,8 +139,10 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                     children: [
                       const CircleAvatar(
                         radius: 64,
-                         backgroundImage: AssetImage('assets/img/profile.png'),
+                        backgroundImage:
+                            AssetImage('assets/images/profile.png'),
                       ),
+
                       Container(
                         width: 36,
                         height: 36,
@@ -74,18 +155,94 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                             Icons.camera_alt,
                             color: Color(0XFF00C8B8),
                           ),
-                          onTap: () {},
+                          //
+                          onTap: () {
+                            //child: imageFile==null ?
+                            showModalBottomSheet(
+                              context: context,
+                              builder: (context) {
+                                return Wrap(
+                                  children: [
+                                    ListTile(
+                                      contentPadding: const EdgeInsets.only(
+                                          left: 20.0, bottom: 0.0),
+                                      leading: const Icon(Icons.image),
+                                      title: const Text('Select From Gallery'),
+                                      onTap: () {
+                                        _getFromGallery();
+                                        // },
+                                        // onTap: () async {
+                                        //   image = await picker.pickImage(source: ImageSource.gallery);
+                                        //   setState(() {
+                                        //     //update UI
+                                        //   });
+                                      },
+
+                                      // onPressed: getImage,
+                                      // tooltip: 'Pick Image',
+                                      // child: Icon(Icons.add_a_photo),
+                                    ),
+                                    ListTile(
+                                      contentPadding: const EdgeInsets.only(
+                                          left: 20.0, bottom: 35.0),
+                                      // minVerticalPadding: 10,
+                                      leading: const Icon(Icons.camera_alt),
+                                      title: const Text('Select From Camera'),
+                                      onTap: () {
+                                        _getFromCamera();
+                                      },
+                                    ),
+                                  ],
+                                );
+                              },
+                              // ): Container(
+                              //     child: Image.file(
+                              // imageFile,
+                              // fit: BoxFit.cover,
+                              // ),
+                            );
+                          },
+                          //popup_code
+                          // onTap: () {
+                          //   myAlert();
+                          // },
+                          // child: Text('Upload Photo'),
+                          // onTap: ()=>_pickImage(),
                         ),
                       ),
+                      // const SizedBox(
+                      //    height: 10,
+                      //  ),
+                      //if image not null show the image
+                      //if image null show text
+                      // image != null
+                      //     ? Padding(
+                      //         padding:
+                      //             const EdgeInsets.symmetric(horizontal: 20),
+                      //         child: ClipRRect(
+                      //           borderRadius: BorderRadius.circular(8),
+                      //           child: Image.file(
+                      //             //to show image, you type like this.
+                      //             File(image!.path),
+                      //             fit: BoxFit.cover,
+                      //             width: MediaQuery.of(context).size.width,
+                      //             height: 300,
+                      //           ),
+                      //         ),
+                      //       )
+                      //     : const Text(
+                      //         "No Image",
+                      //         style: TextStyle(fontSize: 20),
+                      //       ),
                     ],
                   ),
-                   const Text(
-                      'John Smith',
-                      style: TextStyle(
-                        fontSize: 24,
-                        fontWeight: FontWeight.bold,
-                      ),
+                  const Text(
+                    'John Smith',
+                    style: TextStyle(
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold,
                     ),
+                  ),
                   const Text(
                     'san Francisco, CA',
                     style: TextStyle(
@@ -139,7 +296,8 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
               margin: const EdgeInsets.only(bottom: 10, top: 10),
               padding: const EdgeInsets.all(10),
               decoration: BoxDecoration(
-                color: Color.fromARGB(255, 211, 209, 209).withOpacity(0.4),
+                color:
+                    const Color.fromARGB(255, 211, 209, 209).withOpacity(0.4),
                 borderRadius: BorderRadius.circular(8),
               ),
               width: MediaQuery.of(context).size.width * 0.9,
@@ -149,11 +307,15 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                 children: [
                   ListTile(
                     onTap: () {
-                      Navigator.push(context,MaterialPageRoute(builder: (context)=>const PersonalDetails()));
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const PersonalDetails()));
                     },
                     title: const Text(
                       "Personal Details",
-                      style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                      style:
+                          TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                     ),
                     subtitle: const Text("User Personal Details"),
                     trailing: const Icon(
@@ -163,11 +325,16 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                   ),
                   ListTile(
                     onTap: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context)=>const ChangePasswordScreen1()));
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) =>
+                                  const ChangePasswordScreen1()));
                     },
                     title: const Text(
                       "Privacy",
-                      style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                      style:
+                          TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                     ),
                     subtitle: const Text("Change And Update Password"),
                     trailing: const Icon(
@@ -179,7 +346,8 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                     onTap: () {},
                     title: const Text(
                       "Logout",
-                      style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                      style:
+                          TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                     ),
                   ),
                 ],
@@ -191,4 +359,252 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
       ),
     );
   }
+
+  _getFromGallery() async {
+    PickedFile? pickedFile = await ImagePicker().getImage(
+      source: ImageSource.gallery,
+      maxWidth: 180,
+      maxHeight: 180,
+    );
+    if (pickedFile != null) {
+      setState(() {
+        File imageFile;
+        imageFile = File(pickedFile.path);
+      });
+    }
+  }
+
+  _getFromCamera() async {
+    PickedFile? pickedFile = await ImagePicker().getImage(
+      source: ImageSource.camera,
+      maxWidth: 180,
+      maxHeight: 180,
+    );
+    if (pickedFile != null) {
+      setState(() {
+        File imageFile;
+        imageFile = File(pickedFile.path);
+      });
+    }
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties.add(DiagnosticsProperty<File>('imageFile', imageFile));
+  }
+
+// import 'dart:io';
+// import 'package:flutter/material.dart';
+// import 'package:image_picker/image_picker.dart';
+//
+// void main() => runApp(MaterialApp(
+//   home: Home(),
+//   debugShowCheckedModeBanner: false,
+// ));
+//
+// class Home extends StatefulWidget {
+//   @override
+//   _HomeState createState() => _HomeState();
+// }
+//
+// class _HomeState extends State<Home> {
+//
+//   XFile? image;
+//
+//   final ImagePicker picker = ImagePicker();
+//
+//   //we can upload image from camera or from gallery based on parameter
+//   Future getImage(ImageSource media) async {
+//     var img = await picker.pickImage(source: media);
+//
+//     setState(() {
+//       image = img;
+//     });
+//   }
+//
+//   //show popup dialog
+//   void myAlert() {
+//     showDialog(
+//         context: context,
+//         builder: (BuildContext context) {
+//           return AlertDialog(
+//             shape:
+//             RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+//             title: Text('Please choose media to select'),
+//             content: Container(
+//               height: MediaQuery.of(context).size.height / 6,
+//               child: Column(
+//                 children: [
+//                   ElevatedButton(
+//                     //if user click this button, user can upload image from gallery
+//                     onPressed: () {
+//                       Navigator.pop(context);
+//                       getImage(ImageSource.gallery);
+//                     },
+//                     child: Row(
+//                       children: [
+//                         Icon(Icons.image),
+//                         Text('From Gallery'),
+//                       ],
+//                     ),
+//                   ),
+//                   ElevatedButton(
+//                     //if user click this button. user can upload image from camera
+//                     onPressed: () {
+//                       Navigator.pop(context);
+//                       getImage(ImageSource.camera);
+//                     },
+//                     child: Row(
+//                       children: [
+//                         Icon(Icons.camera),
+//                         Text('From Camera'),
+//                       ],
+//                     ),
+//                   ),
+//                 ],
+//               ),
+//             ),
+//           );
+//         });
+//   }
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       appBar: AppBar(
+//         title: Text('Upload Image'),
+//       ),
+//       body: Center(
+//         child: Column(
+//           mainAxisAlignment: MainAxisAlignment.center,
+//           children: [
+//             ElevatedButton(
+//               onPressed: () {
+//                 myAlert();
+//               },
+//               child: Text('Upload Photo'),
+//             ),
+//             SizedBox(
+//               height: 10,
+//             ),
+//             //if image not null show the image
+//             //if image null show text
+//             image != null
+//                 ? Padding(
+//               padding: const EdgeInsets.symmetric(horizontal:
+
+// import 'package:flutter/material.dart';
+
+// void main() {
+//   runApp(MyApp());
+// }
+//
+// class MyApp extends StatefulWidget {
+//   const MyApp({Key? key}) : super(key: key);
+//
+//   @override
+//   _MyAppState createState() => _MyAppState();
+// }
+//
+// class _MyAppState extends State<MyApp> {
+//   @override
+//   Widget build(BuildContext context) {
+//     return MaterialApp(
+//       title: 'Modal Bottom Sheet Demo',
+//       home: Scaffold(
+//         backgroundColor: Colors.blueGrey,
+//         appBar: AppBar(
+//           title: const Text('Creating a Modal Bottom Sheet'),
+//           backgroundColor: Colors.black38,
+//         ),
+//         body: Builder(
+//           builder: (context) {
+//             return Center(
+//               child: ElevatedButton(
+//                 child: Text('Show Modal Bottom Sheet'),
+//                 onPressed: () {
+//                   showModalBottomSheet(
+//                     context: context,
+//                     builder: (context) {
+//                       return Wrap(
+//                         children: [
+//                           ListTile(
+//                             leading: Icon(Icons.share),
+//                             title: Text('Share'),
+//                           ),
+//                           ListTile(
+//                             leading: Icon(Icons.copy),
+//                             title: Text('Copy Link'),
+//                           ),
+//                           ListTile(
+//                             leading: Icon(Icons.edit),
+//                             title: Text('Edit'),
+//                           ),
+//                         ],
+//                       );
+//                     },
+//                   );
+//                 },
+//               ),
+//             );
+//           },
+//         ),
+//       ),
+//     );
+//   }
+// }
+
+// void setState(Null Function() param0) {
+// }
 }
+
+// void _showPicker({
+//   required BuildContext context,
+// }) {
+//   showModalBottomSheet(
+//     context: context,
+//     builder: (BuildContext context) {
+//       return SafeArea(
+//         child: Wrap(
+//           children: <Widget>[
+//             ListTile(
+//               leading: const Icon(Icons.photo_library),
+//               title: const Text('Photo Library'),
+//               onTap: () {
+//                 getImage(ImageSource.gallery);
+//                 Navigator.of(context).pop();
+//               },
+//             ),
+//             ListTile(
+//               leading: const Icon(Icons.photo_camera),
+//               title: const Text('Camera'),
+//               onTap: () {
+//                 getImage(ImageSource.camera);
+//                 Navigator.of(context).pop();
+//               },
+//             ),
+//           ],
+//         ),
+//       );
+//     },
+//   );
+// }
+
+// Future getImage(
+//     ImageSource img,
+//     ) async {
+//   var picker;
+//   final pickedFile = await picker.pickImage(source: img);
+//   XFile? xfilePick = pickedFile;
+//   setState(
+//         () {
+//       if (xfilePick != null) {
+//         var galleryFile = File(pickedFile!.path);
+//       } else {
+//         ScaffoldMessenger.of(context as BuildContext).showSnackBar(// is this context <<<
+//             const SnackBar(content: Text('Nothing is selected')));
+//       }
+//     },
+//   );
+// }

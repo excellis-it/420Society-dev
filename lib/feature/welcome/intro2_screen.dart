@@ -18,47 +18,60 @@ class IntroTwoScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Container(
-              decoration: const BoxDecoration(
-                  image: DecorationImage(
-                      image: AssetImage("assets/images/intro2.png"))),
+
               alignment: Alignment.center,
-              child: const Column(
+              child:  Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Text("Don’t Panic, It’s",
+                  const Text("Don’t Panic, It’s",
                       style: TextStyle(
                           fontSize: 25,
                           fontWeight: FontWeight.bold,
                           color: Colors.black)),
-                  Text("Organic",
+                 const  Text("Organic",
                       style: TextStyle(
                           fontSize: 25,
                           fontWeight: FontWeight.bold,
                           color: AppColors.buttonColor)),
-                  Text("Nationwide Cannabis Delivery,",
+                const  Text("Nationwide Cannabis Delivery,",
                       style: TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.w300,
                           color: AppColors.textWithfadeBlack)),
-                  Text("where available.",
+                 const Text("where available.",
                       style: TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.w300,
-                          color: AppColors.textWithfadeBlack))
+                          color: AppColors.textWithfadeBlack)),
+
+               Column(
+                 children: [
+                   Container(
+                     height: MediaQuery.of(context).size.height * 0.6,
+                     width: MediaQuery.of(context).size.width ,
+                     child: Image.asset("assets/images/intro2.png",fit: BoxFit.fill,
+                     ),
+                   ),
+                   // decoration: const BoxDecoration(
+                   //     image: DecorationImage(
+                   //         image: AssetImage("assets/images/intro2.png"))),
+                 ],
+               )
                 ],
               ),
+
             ),
-            Expanded(
-              child: Image.network("https://wallpapercave.com/wp/wp2490640.jpg",
-                  fit: BoxFit.cover),
-            ),
+            // Expanded(
+            //   child: Image.network("https://wallpapercave.com/wp/wp2490640.jpg",
+            //       fit: BoxFit.cover),
+            // ),
             const SizedBox(height: 10),
             CustomElevatedButton(
                 onTap: () {
                   Navigator.pushNamedAndRemoveUntil(
                       context, AppRoute.loginScreen, (route) => false);
                 },
-                title: "GET STARTED",
+                title: "GET STARTED  >",
                 width: 240,
                 color: AppColors.buttonColor),
             const SizedBox(height: 20),

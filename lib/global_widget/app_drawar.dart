@@ -28,7 +28,7 @@ Widget customDrawer({required context}) {
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 const CircleAvatar(
-                  backgroundImage: AssetImage('assets/img/profile.png'),
+                  backgroundImage: AssetImage('assets/images/profile.png'),
                   radius: 40,
                 ),
                 const SizedBox(
@@ -64,9 +64,10 @@ Widget customDrawer({required context}) {
         ),
         Expanded(
           child: ListView(
+            padding: const EdgeInsets.only(top: 10, bottom: 18),
             children: [
               Container(
-                padding: const EdgeInsets.only(top: 0, left: 10),
+                padding: const EdgeInsets.only(top: 0, left: 10, bottom: 0),
                 child: Text(
                   "your information".toUpperCase(),
                   style: const TextStyle(
@@ -80,8 +81,9 @@ Widget customDrawer({required context}) {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Container(
-                    margin: const EdgeInsets.only(bottom: 10, top: 10),
-                    padding: const EdgeInsets.all(10),
+                    margin: const EdgeInsets.only(bottom: 0, top: 0),
+                    padding: const EdgeInsets.only(
+                        top: 0, bottom: 0, left: 10, right: 10),
                     decoration: BoxDecoration(
                       color: const Color.fromARGB(255, 211, 209, 209)
                           .withOpacity(0.4),
@@ -161,8 +163,11 @@ Widget customDrawer({required context}) {
                   Container()
                 ],
               ),
+              const Padding(
+                padding: EdgeInsets.only(top: 0),
+              ),
               Container(
-                padding: const EdgeInsets.only(top: 0, left: 10),
+                padding: const EdgeInsets.only(top: 10, left: 10),
                 child: Text(
                   "Other information".toUpperCase(),
                   style: const TextStyle(
@@ -177,7 +182,8 @@ Widget customDrawer({required context}) {
                 children: [
                   Container(
                     margin: const EdgeInsets.only(bottom: 10, top: 10),
-                    padding: const EdgeInsets.all(10),
+                    padding: const EdgeInsets.only(
+                        top: 0, bottom: 0, left: 10, right: 10),
                     decoration: BoxDecoration(
                       color: const Color.fromARGB(255, 211, 209, 209)
                           .withOpacity(0.4),
@@ -269,3 +275,86 @@ Widget customDrawer({required context}) {
     ),
   );
 }
+
+// import 'dart:io';
+// import 'package:flutter/material.dart';
+// import 'package:image_picker/image_picker.dart';
+//
+// class MyPage extends StatefulWidget {
+//   @override
+//   _MyPageState createState() => _MyPageState();
+// }
+// class _MyPageState extends State<MyPage> {
+//   /// Variables
+//   File imageFile;
+//
+//   /// Widget
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//         appBar: AppBar(
+//           title: Text("Image Picker"),
+//         ),
+//         body: Container(
+//             child: imageFile == null
+//                 ? Container(
+//               alignment: Alignment.center,
+//               child: Column(
+//                 mainAxisAlignment: MainAxisAlignment.center,
+//                 children: <Widget>[
+//                   RaisedButton(
+//                     color: Colors.greenAccent,
+//                     onPressed: () {
+//                       _getFromGallery();
+//                     },
+//                     child: Text("PICK FROM GALLERY"),
+//                   ),
+//                   Container(
+//                     height: 40.0,
+//                   ),
+//                   RaisedButton(
+//                     color: Colors.lightGreenAccent,
+//                     onPressed: () {
+//                       _getFromCamera();
+//                     },
+//                     child: Text("PICK FROM CAMERA"),
+//                   )
+//                 ],
+//               ),
+//             ): Container(
+//               child: Image.file(
+//                 imageFile,
+//                 fit: BoxFit.cover,
+//               ),
+//             )));
+//   }
+//
+//   /// Get from gallery
+//   _getFromGallery() async {
+//     PickedFile pickedFile = await ImagePicker().getImage(
+//       source: ImageSource.gallery,
+//       maxWidth: 1800,
+//       maxHeight: 1800,
+//     );
+//     if (pickedFile != null) {
+//       setState(() {
+//         imageFile = File(pickedFile.path);
+//       });
+//     }
+//   }
+//
+//   /// Get from Camera
+//   _getFromCamera() async {
+//     PickedFile pickedFile = await ImagePicker().getImage(
+//       source: ImageSource.camera,
+//       maxWidth: 1800,
+//       maxHeight: 1800,
+//     );
+//     if (pickedFile != null) {
+//       setState(() {
+//         imageFile = File(pickedFile.path);
+//       });
+//     }
+//   }
+// }
+//

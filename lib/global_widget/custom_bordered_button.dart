@@ -25,7 +25,7 @@ class CustomBorderedElevatedButton extends StatelessWidget {
             side: const BorderSide(color: Colors.red,width: 1)
           )),
       child:Text(title,style:  textStyle??const TextStyle(
-          fontSize: 16,
+          fontSize: 14,
           fontWeight: FontWeight.w600,
           color: Colors.red),),
     );
