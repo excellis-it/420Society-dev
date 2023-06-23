@@ -5,6 +5,8 @@ import 'package:four20society/global_widget/app_drawar.dart';
 import '../../../global_widget/custom_concenrate_product.dart';
 import '../../../global_widget/custom_home_product_card.dart';
 import '../../../global_widget/custom_todays_deal_product_cart.dart';
+import '../../cart/presentation/cart_page.dart';
+import '../../wish_list/presentation/wishlist_page.dart';
 
 class DashboardScreen extends StatefulWidget {
   const DashboardScreen({super.key});
@@ -61,8 +63,17 @@ class _DashboardScreen extends State<DashboardScreen> {
       body: ListView(
         children: <Widget>[
           Row(
+            // onTab: () {
+            //   Navigator.push(
+            //     context,
+            //     MaterialPageRoute(
+            //       builder: (context) => const NotificationScreen(),
+            //     ),
+            //   );
+            // },
             children: [
               SizedBox(
+
                 width: MediaQuery.of(context).size.width * 0.85,
                 child: Padding(
                   padding: const EdgeInsets.symmetric(
@@ -124,6 +135,7 @@ class _DashboardScreen extends State<DashboardScreen> {
           SizedBox(
             height: 115.0,
             child: ListView.builder(
+
               shrinkWrap: true,
               scrollDirection: Axis.horizontal,
               itemCount: 9,
@@ -271,7 +283,14 @@ class _DashboardScreen extends State<DashboardScreen> {
                     scrollDirection: Axis.horizontal,
                     itemCount: 10,
                     itemBuilder: (context, index) {
-                      return const CustomHomeProductCardWidget();
+                      return CustomHomeProductCardWidget(
+                        onPressed: (){
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const ProductWishListScreen()));
+                        },
+                      );
                     },
                   ),
                 ),
@@ -730,4 +749,7 @@ class _DashboardScreen extends State<DashboardScreen> {
       ),
     );
   }
+}
+
+class CartPage {
 }
