@@ -388,11 +388,6 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
     }
   }
 
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties.add(DiagnosticsProperty<File>('imageFile', imageFile));
-  }
 
 // import 'dart:io';
 // import 'package:flutter/material.dart';
