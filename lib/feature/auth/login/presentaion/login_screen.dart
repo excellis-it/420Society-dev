@@ -1,5 +1,7 @@
 import 'dart:convert';
+import 'dart:developer';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:four20society/constants/colors/app_colors.dart';
@@ -7,22 +9,39 @@ import 'package:four20society/constants/routes/routes_name.dart';
 import 'package:four20society/global_widget/bottom_nav.dart';
 import 'package:four20society/global_widget/custom_button.dart';
 import 'package:four20society/global_widget/input_fields.dart';
-import 'package:http/http.dart';
+import 'package:http/http.dart' as http;
+import 'package:four20society/constants/apis_path/api_config_string.dart';
+import '../../../../utils/local_storage/local_storage.dart';
+import '../../forget_password/api_helper/forget_password_screen_api_helper.dart';
+import 'package:four20society/lib/utils/local_storage/local_storage.dart';
+
 
 class LoginScreen extends StatefulWidget {
-  const LoginScreen({super.key});
+  bool isSlot;
+   LoginScreen({super.key, this.isSlot = false});
   @override
   State<LoginScreen> createState() => _LoginScreenState();
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  TextEditingController loginIdController = TextEditingController();
-  TextEditingController passwordController = TextEditingController();
+  String groupValue = "USER";
+  bool isTextObscure = true;
+  final TextEditingController loginIdController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+  LocalStorageService localStorageService = LocalStorageService();
+  final _formKey = GlobalKey<FormState>();
 
 
   @override
+  void dispose() {
+    loginIdController.dispose();
+    passwordController.dispose();
+    super.dispose();
+  }
   Widget build(BuildContext context) {
+    // DeviceSizeConfig deviceSizeConfig = DeviceSizeConfig(context);
     return Scaffold(
+      key: _formKey,
         body: Stack(
       children: [
         SizedBox(
@@ -47,12 +66,31 @@ class _LoginScreenState extends State<LoginScreen> {
                           TextStyle(fontSize: 25, fontWeight: FontWeight.w700)),
                   const SizedBox(height: 30),
                   InputFieldWidget(
+                    validator: (value) {
+                      if(value==null || value.isEmpty){
+                        return "Please enter user name";
+                      }
+                      return null;
+                    },
                       controller: loginIdController, hintText: 'user Name'),
                   InputFieldWidget(
                     obscureText: true,
                     controller: passwordController,
                     hintText: 'password',
-                    sufferIcon: const Icon(Icons.visibility),
+                    sufferIcon: IconButton(
+                      onPressed: () {
+                        setState(() {
+                          isTextObscure = !isTextObscure;
+                        });
+                      },
+                      icon: Icon(
+                        isTextObscure
+                            ? Icons.visibility_off
+                            : Icons.visibility,
+                        color: AppColors.buttonColor,
+                      ),
+                    ),
+                    // sufferIcon: const Icon(Icons.visibility),
                   ),
                   Align(
                     alignment: Alignment.centerRight,
@@ -116,3 +154,46 @@ class _LoginScreenState extends State<LoginScreen> {
     ));
   }
 }
+
+Future<void> loginData(BuildContext context, String stEmail,
+    String stPassword, String groupValue) async {
+  if(kDebugMode){
+   print(stEmail);
+    print(stPassword);
+}
+  final Map<String, dynamic> reqModel = {
+    "email": stEmail.trim(),
+    "password": stPassword.trim(),
+    'user_type': groupValue.trim(),
+
+  };
+  log("reqModel--->$reqModel");
+  final Map<String, dynamic> data = {
+    "user": reqModel,
+  };
+  var  response = await http.post(Uri.parse(ApiEndPoints.login), body: data);
+  var jsonResponse = json.decode(response.body);
+  var resMsg = jsonResponse['message'];
+  if (response.statusCode == 200) {
+    print("result");
+    final authTokens = jsonResponse['data']['auth_token'].toString();
+    print("authTokens--->$authTokens");
+     //
+     // localStorageService.saveToDisk(
+     //   LocalStorageService.AUTH_TOKEN, auth_token.trim());
+     //
+     // localStrorageService.saveToDisk(
+     //   LocalStorageService.USER_NAME, user_name.trim());
+
+
+  }
+  else {
+    print("hello");
+    print("resMsg--->$resMsg");
+
+
+  }
+}
+
+
+

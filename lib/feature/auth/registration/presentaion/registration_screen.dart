@@ -4,6 +4,7 @@ import 'package:four20society/constants/colors/app_colors.dart';
 import 'package:four20society/constants/routes/routes_name.dart';
 import 'package:four20society/global_widget/custom_button.dart';
 import 'package:four20society/global_widget/input_fields.dart';
+import 'package:four20society/utils/local_storage/local_storage.dart';
 
 class RegistrationScreen extends StatefulWidget {
   const RegistrationScreen({super.key});
@@ -114,3 +115,61 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
     ));
   }
 }
+void registrationScreen (
+    BuildContext context,
+    String stName,
+    String stLName,
+    String Email,
+    String Phone,
+    String Password,
+    String CnfPassword,
+    ) {
+  Map data = {
+    "stName": stName,
+    "stLName": stLName,
+    "Email": Email,
+    "Phone": Phone,
+    "Password": Password,
+    "CnfPassword": CnfPassword,
+  };
+//    var response= await http.post(Uri.parse(ApiEndPoints.registration), body: data);
+//    var jsonResponse = jsonDecode(response.body);
+//    var resMsg= jsonResponse['message'];
+//    if(response.statusCode==200){
+//      print(resMsg);
+//      final authToken = jsonResponse['data']['auth_token'].toString();
+//      print("authToken----> $authToken");
+//      localStorageService.saveDisk(
+//        LocalStorageService.AUTH_TOKEN, authToken.trim());
+//      localStorageService.saveDisk(
+//        LocalStorageService.USER_ID, jsonResponse['data']['id'].toString().trim());
+//       localStorageService.saveDisk(
+//        LocalStorageService.USER_NAME, jsonResponse['data']['stName'].toString().trim());
+//       localStorageService.saveDisk(
+//        LocalStorageService.USER_EMAIL, jsonResponse['data']['Email'].toString().trim());
+//       localStorageService.saveDisk(
+//         LocalStorageService.USER_PHONE, jsonResponse['data']['Phone'].toString().trim());
+//       localStorageService.saveDisk(
+//        LocalStorageService.USER_PASS, jsonResponse['data']['password'].toString().trim());
+//       localStorageService.saveDisk(
+//         LocalStorageService.USER_CF_PASS, jsonResponse['data']['CnfPassword'].toString().trim());
+//      log("isSlot ---> ${widget.isSlot}");
+//      if(widget.isSlot){
+//        Navigator.pop(context);
+//
+//      }
+//      else{
+//        print("error");
+//      }
+//
+//
+//    }
+//     else{
+//       print("error");
+//     }
+// }
+
+}
+
+
+

@@ -46,7 +46,7 @@ class RoutesGenerator {
       case '/forgetPassword':
         return MaterialPageRoute(builder: (_) => const ForgetPasswordScreen());
       case '/login':
-        return MaterialPageRoute(builder: (_) => const LoginScreen());
+        return MaterialPageRoute(builder: (_) =>    LoginScreen());
       case '/notificationScreen':
         return MaterialPageRoute(builder: (_) => const NotificationScreen());
         case '/productCategoryScreen':
