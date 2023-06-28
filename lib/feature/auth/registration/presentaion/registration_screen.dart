@@ -31,7 +31,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
         Positioned(
             bottom: 0,
             child: Container(
-              padding: const EdgeInsets.only(top:50, left: 45, right: 45),
+              padding: const EdgeInsets.only(top: 50, left: 45, right: 45),
               height: MediaQuery.of(context).size.height * 0.85,
               width: MediaQuery.of(context).size.width,
               decoration: const BoxDecoration(
@@ -42,11 +42,13 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                    RichText(
+                  RichText(
                       text: TextSpan(
-                        text:'Register' ,
+                          text: 'Register',
                           style: const TextStyle(
-                              fontSize:25, fontWeight: FontWeight.w400,color:AppColors.app_bottombar_color),
+                              fontSize: 25,
+                              fontWeight: FontWeight.w400,
+                              color: AppColors.app_bottombar_color),
                           children: <TextSpan>[
                         TextSpan(
                             recognizer: TapGestureRecognizer()
@@ -55,16 +57,15 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                                     AppRoute.loginScreen, (route) => false);
                               },
                             text: ' to',
-                            style:
-                               const TextStyle(color:Colors.black ))
+                            style: const TextStyle(color: Colors.black))
                       ])),
                   const Text("Explore Exciting",
                       style:
                           TextStyle(fontSize: 25, fontWeight: FontWeight.w700)),
-                           const Text("Things",
+                  const Text("Things",
                       style:
                           TextStyle(fontSize: 25, fontWeight: FontWeight.w700)),
-                  const SizedBox(height:15),
+                  const SizedBox(height: 15),
                   InputFieldWidget(
                       controller: fullNameController, hintText: 'full Name'),
                   InputFieldWidget(
@@ -72,12 +73,18 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                   InputFieldWidget(
                       controller: phoneController, hintText: 'Phone Number'),
                   InputFieldWidget(
-                   obscureText: true,
-                      controller: passwordController, hintText: 'Password',sufferIcon: const Icon(Icons.visibility),),
+                    obscureText: true,
+                    controller: passwordController,
+                    hintText: 'Password',
+                    sufferIcon: const Icon(Icons.visibility),
+                  ),
                   InputFieldWidget(
                     obscureText: true,
-                      controller: cnfPassController, hintText: 're-password',sufferIcon: const Icon(Icons.visibility),),
-                  const SizedBox(height:60),
+                    controller: cnfPassController,
+                    hintText: 're-password',
+                    sufferIcon: const Icon(Icons.visibility),
+                  ),
+                  const SizedBox(height: 60),
                   CustomElevatedButton(
                     onTap: () {},
                     title: "Registration",
@@ -86,9 +93,11 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                   const SizedBox(height: 15),
                   RichText(
                       text: TextSpan(
-                        text:'Already have an account?' ,
+                          text: 'Already have an account?',
                           style: const TextStyle(
-                              fontSize: 16, fontWeight: FontWeight.w400,color: Colors.black),
+                              fontSize: 16,
+                              fontWeight: FontWeight.w400,
+                              color: Colors.black),
                           children: <TextSpan>[
                         TextSpan(
                             recognizer: TapGestureRecognizer()
@@ -97,10 +106,9 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                                     AppRoute.loginScreen, (route) => false);
                               },
                             text: ' LOGIN NOW',
-                            style:
-                               const TextStyle(color: AppColors.app_bottombar_color))
+                            style: const TextStyle(
+                                color: AppColors.app_bottombar_color))
                       ])),
-
                   const Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -115,15 +123,16 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
     ));
   }
 }
-void registrationScreen (
-    BuildContext context,
-    String stName,
-    String stLName,
-    String Email,
-    String Phone,
-    String Password,
-    String CnfPassword,
-    ) {
+
+void registrationScreen(
+  BuildContext context,
+  String stName,
+  String stLName,
+  String Email,
+  String Phone,
+  String Password,
+  String CnfPassword,
+) {
   Map data = {
     "stName": stName,
     "stLName": stLName,
@@ -168,8 +177,4 @@ void registrationScreen (
 //       print("error");
 //     }
 // }
-
 }
-
-
-
